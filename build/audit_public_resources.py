@@ -117,13 +117,40 @@ def srt_audit():
             "video_manifest_entries":len(entries),"unique_film_ids":66,
             "video_manifest_sha256":sha(data)}
 
+def lock_audit():
+    """Compare all 132 resource Git blob SHA-1 values to tested v1.0.0."""
+    doc=json.loads((ROOT/"build"/"RESOURCE_LOCKS_v1.0.0.json").read_text("utf-8"))
+    check(doc.get("schema")=="harvester-public-resources-git-blob-locks-v1",
+          "Wrong resource lock manifest schema")
+    check(doc.get("tested_github_build_commit")=="cd0b3c62f1b374055a47ac819e2ace4e5ff46e46",
+          "Wrong original tested build commit")
+    check(doc.get("file_count")==132 and len(doc.get("files",[]))==132,
+          "Wrong number of pinned resource hashes")
+    expected={row["path"]:row for row in doc["files"]}
+    check(len(expected)==132,"Duplicate resource locks")
+    real={p.relative_to(ROOT).as_posix() for p in (ROOT/"resources").rglob("*")
+          if p.is_file() or p.is_symlink()}
+    check(real==set(expected)|{"resources/README.md"},
+          "Unexpected or missing public resource files")
+    for name,entry in expected.items():
+        path=ROOT/name
+        check(not path.is_symlink() and path.is_file(),"Resource symlink or missing: "+name)
+        content=path.read_bytes()
+        check(len(content)==entry["size_bytes"],"Changed resource size: "+name)
+        actual=hashlib.sha1(b"blob "+str(len(content)).encode("ascii")+b"\x00"+content).hexdigest()
+        check(actual==entry["blob_sha1"],"Changed original Git resource blob: "+name)
+    return {"original_tested_byte_identical_files":len(expected)}
+
 def main():
     check(sha(NATIVE.read_bytes())==EXPECTED_NATIVE_SHA and NATIVE.stat().st_size==25600,"Native C# patcher no longer matches tested v1.0.0")
+    locked=lock_audit()
     report={"schema":"harvester-public-resource-readonly-audit-v1",
             "source":"Exact v1.0.0 original ZIP and payload files from user-confirmed CI installer",
-            "delta":zip_audit(),"native_patcher_sha256":sha(NATIVE.read_bytes()),
+            "delta":zip_audit(),"original_resource_lock":locked,
+            "native_patcher_sha256":sha(NATIVE.read_bytes()),
             "subtitles_and_video_manifest":srt_audit(),
             "binary_original_games_present":False,"legal_clearance_given":False}
+    print("AUDIT PASS: All 132 public resource files match original tested Git blob checksums")
     print("AUDIT PASS: 22 ZIP members, 20 binary delta variants, 18 translation targets")
     print("AUDIT PASS: 128 subtitle SRTs, 196 video manifest entries; 66 film sources")
     print("AUDIT PASS: Original SHA-256-pinned C# native patcher, 25600 bytes")
