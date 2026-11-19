@@ -1,0 +1,97 @@
+name: Attach audited Harvester v1.0.0 translation resources to existing release
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'resources/**'
+      - 'build/audit_public_resources.py'
+      - 'build/RESOURCE_LOCKS_v1.0.0.json'
+      - '.github/workflows/attach-v1-resources.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: harvester-v1-release-asset-updates
+  cancel-in-progress: false
+jobs:
+  resource-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Prove public resource bytes exactly match tested v1.0.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 build/audit_public_resources.py
+      - name: Create separately auditable translation data ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import zipfile
+          locks=json.loads(Path("build/RESOURCE_LOCKS_v1.0.0.json").read_text("utf-8"))
+          files=sorted(row["path"] for row in locks["files"])
+          expected=set(files)|{"resources/README.md"}
+          actual={x.as_posix() for x in Path("resources").rglob("*") if x.is_file() or x.is_symlink()}
+          if len(files)!=132 or actual!=expected:
+              raise SystemExit("STOP: unexpected resource file count or extra resource data")
+          for name in sorted(expected):
+              if Path(name).is_symlink() or not Path(name).is_file():
+                  raise SystemExit("STOP: unsafe symlink or missing file "+name)
+          archive="Harvester_GOG_Deutsch_Resources_v1.0.0.zip"
+          with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED,compresslevel=9) as out:
+              for name in sorted(expected):
+                  out.write(name,arcname="Harvester_GOG_Deutsch_Resources_v1.0.0/"+name)
+          with zipfile.ZipFile(archive) as z:
+              content=set(z.namelist())
+          if content!={"Harvester_GOG_Deutsch_Resources_v1.0.0/"+x for x in expected}:
+              raise SystemExit("STOP: mismatched ZIP entries")
+          print("RESOURCE ZIP PASS: 128 SRT, 2 XML, Delta, native patcher, README")
+          print("RESOURCE ZIP SHA-256:",hashlib.sha256(Path(archive).read_bytes()).hexdigest())
+          PY
+      - name: Attach only resource ZIP to the EXISTING v1.0.0 GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json tagName --jq '.tagName' | grep -Fx v1.0.0
+          gh release upload v1.0.0 Harvester_GOG_Deutsch_Resources_v1.0.0.zip --repo "$GITHUB_REPOSITORY" --clobber
+          for f in Harvester_GOG_Deutsch_Resources_v1.0.0.zip Harvester_GOG_Deutsch_Source_v1.0.0.zip Harvester_GOG_Deutsch_v1.0.0.zip; do
+            gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx "$f"
+          done
+          echo 'PASS: resources attached, player binary and code-only ZIP retained.'
+      - name: Add a clear resource link to the existing v1.0.0 release notes
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          notes="$(gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json body --jq '.body')"
+          if grep -Fq "## Übersetzungsressourcen (v1.0.0)" <<< "$notes"; then
+            echo 'Release already explains the resource ZIP.'
+            exit 0
+          fi
+          out="$(mktemp)"
+          printf '%s\n\n' "$notes" > "$out"
+          cat >> "$out" <<'NOTES'
+          ## Übersetzungsressourcen (v1.0.0)
+
+          Neben dem [öffentlich einsehbaren Programmquellcode](https://github.com/Koarria/Harvester-German-Translation/tree/main/source) stehen jetzt auch die [deutschen Übersetzungsressourcen](https://github.com/Koarria/Harvester-German-Translation/tree/main/resources) bereit.
+
+          **Separater Ressourcen-Download:** `Harvester_GOG_Deutsch_Resources_v1.0.0.zip` in den Release-Assets. Es enthält das **byteidentische Delta** des getesteten Installers, **128 deutsche SRT-Untertiteldateien**, `Regeln.xml`, `VideoManifest.xml`, den selbst erstellten nativen C#-Patcher und eine Anleitung.
+
+          Mit dem [öffentlichen Windows-Bauskript](https://github.com/Koarria/Harvester-German-Translation/tree/main/build) lassen sich die Programmquellen und Übersetzungsressourcen zu einer eigenständigen EXE zusammenbauen. Ein neu erstellter Installer ist nicht automatisch bitidentisch mit der bereits erfolgreich getesteten v1.0.0-EXE. **Für normale Spieler bleibt das ursprüngliche Installer-ZIP der richtige Download.**
+
+          Keine vollständigen Original-GOG-Spiele, CD-Abbilder oder Videodateien enthalten. Die übersetzten Inhalte sind Bearbeitungen des Spiels; eine rechtliche Zustimmung der ursprünglichen Rechteinhaber wird nicht behauptet. Das ursprüngliche Delta enthält unveränderte historische Metadaten `private_only: true` und `legal_clearance: false`; Details in der [Ressourcen-README](https://github.com/Koarria/Harvester-German-Translation/blob/main/resources/README.md). Der bestehende Release-Tag und das getestete Spielerpaket wurden nicht geändert.
+          NOTES
+          gh release edit v1.0.0 --repo "$GITHUB_REPOSITORY" --notes-file "$out"
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json body --jq '.body' | grep -F '## Übersetzungsressourcen (v1.0.0)'
+          echo 'PASS: resource links added to existing release.'
+# No tags are moved and the original tested setup ZIP is never rebuilt or replaced.
