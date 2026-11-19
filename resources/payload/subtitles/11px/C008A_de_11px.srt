@@ -1,0 +1,9 @@
+1
+00:00:00,360 --> 00:00:03,741
+Ich habe sie gerade schlafen gelegt.
+Wenn sie aufwacht, will sie gleich
+
+2
+00:00:03,741 --> 00:00:04,360
+wieder essen.
+
