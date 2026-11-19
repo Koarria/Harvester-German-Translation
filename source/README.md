@@ -21,22 +21,24 @@ Hier liegt der **einsehbare Programmquellcode** des am 19. November 2026 geteste
 
 Die Dateien liegen in der ursprünglichen relativen Projektstruktur unter diesem `source/`-Verzeichnis. Damit lassen sich Implementierung, Hashprüfungen, Übersetzungspipeline und Sicherheitsverhalten untersuchen.
 
-## Was ausdrücklich **nicht** veröffentlicht wird
+## Programmcode, Delta und Übersetzungsdaten
 
-Dies ist ein **Quellcode-Archiv, keine vollständige reproduzierbare Distribution**. Nicht enthalten sind:
+Dieses `source/`-Verzeichnis enthält ausschließlich **Programmquelltext und technische Tests**. Die deutschen Übersetzungsressourcen liegen jetzt ebenfalls öffentlich vor, jedoch **getrennt vom reinen Source-ZIP**:
 
-- Das private **binäre Delta-Bundle**, mit dem die lokal geprüften deutschen Ressourcen erstellt werden
-- Originale GOG-Spielmedien, CD-Abbilder, MP4-/FST-Videos oder DOSBox-Spieldateien
-- Binärdateien der übersetzten Spielressourcen (`payload/Daten/*.bin`)
-- Der kompilierte native Patch-Code als `payload/Harvester_Deutsch_Patcher.exe`; der zugehörige **C#-Quellcode** ist jedoch vorhanden
-- Die vollständigen Übersetzungs-/Videountertitel-Datendateien und die produktiven `Regeln.xml`-/`VideoManifest.xml`-Daten
-- Private Projektunterlagen, Git-Historie, Testergebnisse mit persönlichen Pfaden und historische Test-Installer
+- [Geprüftes Delta-ZIP](../resources/delta/Harvester_GOG_Deutsch_Delta_v1.0.0.zip): 20 Binärdeltas für 18 übersetzte Zielressourcen; exakt die Bytes des vom Nutzer getesteten Buildstands
+- [128 deutsche SRT-Dateien](../resources/payload/subtitles/) mit 10-/11-px-Modi und vier Endsequenzen
+- [Regeln.xml](../resources/payload/Regeln.xml) und [VideoManifest.xml](../resources/payload/VideoManifest.xml)
+- [Kompilierter eigener C#-Patcher](../resources/payload/Harvester_Deutsch_Patcher.exe) mit [vollständigem C#-Quellcode](src/windows/)
 
-Die Binärdaten sind erforderlich, wenn man **dieselbe spielbare deutsche Ausgabe** selbst aus dem Quellcode bauen will. Sie sind Teil des separat bereitgestellten, überprüften Installers, werden jedoch **nicht als eigenständiges Git-Quellpaket** veröffentlicht. Deshalb bitte **nicht** behaupten, aus diesem Ordner allein sei ein identisches Release ohne weitere Ressourcen vollständig reproduzierbar.
+Der öffentliche Code plus die Ressourcen ermöglichen es, mit [dem Windows-Bauskript](../build/Harvester_aus_Quellcode_bauen.cmd) **einen eigenständigen Installer nachzubauen**. Eine bitgenaue SHA-256-Übereinstimmung der neu kompilierten EXE mit der früheren Release-EXE ist jedoch nicht garantiert.
+
+**Nicht veröffentlicht** werden Original-GOG-Spielmedien, unveränderte FST/MP4-Videos, fertige komplette Spielinstallationen, originale EXEs und Savegames sowie private Git-Historie und Entwicklerprotokolle. Zur *Installation* wird weiterhin eine eigene unterstützte englische GOG-Version benötigt.
+
+Das Delta enthält aus dem Originalspiel abgeleitete Übersetzungsdaten. Seine Veröffentlichung bedeutet **keine urheberrechtliche Genehmigung** durch die Rechteinhaber. Die privaten historischen Kennzeichen in `bundle.json` bleiben aus Gründen der Byteidentität erhalten; Einzelheiten in der [Ressourcen-README](../resources/README.md).
 
 ## Prüfbarkeit und Tests
 
-Die veröffentlichte Installer-EXE wurde auf Windows mit einer unterstützten englischen GOG-Installation getestet: Deutsch, bestehende Spielstände und Videountertitel funktionierten. Die ursprünglichen Windows-CI-Tests wurden im privaten Entwicklungsprojekt ausgeführt; zahlreiche technische Tests liegen hier als Quellcode bei. Einige Tests benötigen die im öffentlichen Repository ausgelassenen Ressourcen und sind daher **aus diesem öffentlichen Source-Verzeichnis allein nicht zwingend ausführbar**.
+Die veröffentlichte Installer-EXE wurde auf Windows mit einer unterstützten englischen GOG-Installation getestet: Deutsch, bestehende Spielstände und Videountertitel funktionierten. Die ursprünglichen Windows-CI-Tests wurden im privaten Entwicklungsprojekt ausgeführt; zahlreiche technische Tests liegen hier als Quellcode bei. Einige Tests benötigen die [nun getrennt veröffentlichten Ressourcen](../resources/README.md); aus dem `source/`-Verzeichnis allein sind sie daher nicht zwingend ausführbar. Das öffentliche Buildskript fügt Code und Ressourcen vor dem Bau zusammen.
 
 Die zentrale Regel bleibt: **SHA-256-Prüfungen beziehen sich auf den Dateiinhalt und sind unabhängig vom Speicherort des Spiels.** Der XML-Prüfnachweis enthält den tatsächlichen Quell- und Zielpfad; sein kompletter SHA-256 darf deshalb nicht als universell erwarteter Wert festgelegt werden.
 
