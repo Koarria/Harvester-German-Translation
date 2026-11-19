@@ -1,0 +1,8 @@
+1
+00:00:00,100 --> 00:00:01,520
+Lass mich in Ruhe, ja?
+
+2
+00:00:02,120 --> 00:00:03,800
+Jetzt kommt die beste Stelle.
+
