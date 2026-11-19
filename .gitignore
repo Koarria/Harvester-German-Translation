@@ -1,0 +1,7 @@
+# Generated public Windows build outputs – not source or translation assets.
+/public_build_stage/
+/public_build_output/
+__pycache__/
+*.py[cod]
+*.spec
+*.log
