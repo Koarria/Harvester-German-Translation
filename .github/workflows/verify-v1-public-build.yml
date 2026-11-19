@@ -1,0 +1,52 @@
+name: Harvester v1.0.0 public sources + resources Windows rebuild QA
+on:
+  push:
+    branches:
+      - 'resources/harvester-de-v1.0.0-audited'
+      - main
+    paths:
+      - 'source/**'
+      - 'resources/**'
+      - 'release/LIES_MICH.txt'
+      - 'build/**'
+      - '.github/workflows/verify-v1-public-build.yml'
+  workflow_dispatch:
+concurrency:
+  group: harvester-public-rebuild-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  windows-public-rebuild:
+    runs-on: windows-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout public sources only
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up exact developer Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install public source build requirements
+        shell: pwsh
+        run: |
+          python -m pip install -r source/requirements-build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Audit original tested Delta and 128 public subtitles
+        shell: pwsh
+        run: |
+          python build/audit_public_resources.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Rebuild Windows one-file setup solely from public code and resources
+        shell: pwsh
+        run: |
+          & ./build/Harvester_aus_Quellcode_bauen.ps1 -CI
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if (-not (Test-Path 'public_build_output/Harvester_GOG_Deutsch_v1.0.0.zip' -PathType Leaf)) {
+            throw 'Expected public rebuild ZIP missing'
+          }
+          Write-Host 'PASS: Public code + public Delta + XML + SRT => complete local Windows setup ZIP.'
+          Write-Host 'This CI binary is not auto-published and does not replace user-tested v1.0.0.'
+# Never download original GOG game assets or overwrite the v1.0.0 release setup.
