@@ -1,0 +1,5 @@
+1
+00:00:00,980 --> 00:00:06,340
+Du hast die Einladung erhalten, aber
+nicht mitgebracht.
+
