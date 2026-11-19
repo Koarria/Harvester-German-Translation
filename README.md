@@ -17,11 +17,17 @@ Das ZIP enthält nur:
 
 Die Installation erfordert **keine separate Python-Installation und kein Delta-ZIP**.
 
-## Quellcode
+## Quellcode und deutsche Übersetzungsdaten
 
-Der **[öffentlich einsehbare Quellcode des v1.0.0-Installers](source/README.md)** ist unter [source/](source/) verfügbar. Er umfasst Python-Installer, die automatischen SHA-256-Prüfungen, den FST-/Videountertitel-Renderer, die C#-Patcherquellen sowie technische Tests. Zusätzlich soll die GitHub-Release-Seite ein separates `Harvester_GOG_Deutsch_Source_v1.0.0.zip` erhalten.
+**Der komplette Installer-Quellcode und die deutschen Übersetzungsressourcen sind öffentlich einsehbar:**
 
-Die Quellcodedateien wurden mit dem getesteten Windows-Buildstand abgeglichen. **Nicht enthalten** sind das private Delta-ZIP, fertige Spielressourcen und die vollständigen Übersetzungsdaten. Das Source-Verzeichnis allein ermöglicht deshalb keinen vollständigen identischen Neu-Build; Details stehen in der [Source-README](source/README.md).
+- [Programmquellcode](source/README.md) – Python-Installer, FST-Renderer, C#-Patcher, Hashprüfungen und Tests
+- [Übersetzungsressourcen](resources/README.md) – das geprüfte Delta-Bundle, 128 deutsche SRT-Dateien, zwei XML-Manifeste und der eigene C#-Patcher
+- [Installer aus Quellcode bauen](build/Harvester_aus_Quellcode_bauen.cmd) – Windows-Bauskript zur Zusammenführung der öffentlichen Dateien
+
+Auf der [Release-Seite](../../releases/tag/v1.0.0) stehen das **getestete Spielerpaket** sowie separate ZIP-Archive für Quellcode und Übersetzungsressourcen. Zum Spielen braucht man **nur das normale Installer-ZIP** und die eigene englische GOG-Version, weder Python noch weitere Delta-Dateien.
+
+Die heruntergeladene, getestete v1.0.0-EXE wurde nicht verändert. Ein neuer Build aus Quellen benötigt Python 3.13 und kann technisch einen anderen EXE-SHA-256 erzeugen. Die deutschen Delta-Ressourcen enthalten Bearbeitungen des Originalspiels; ihre Veröffentlichung ist keine automatische urheberrechtliche Freigabe.
 
 ## Voraussetzungen
 
