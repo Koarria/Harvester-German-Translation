@@ -117,4 +117,29 @@ jobs:
           gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx Harvester_GOG_Deutsch_Source_v1.0.0.zip
           gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx Harvester_GOG_Deutsch_v1.0.0.zip
           echo "PASS: source ZIP attached; original installer ZIP remains."
+      - name: Explain audited source ZIP in existing v1.0.0 release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          notes="$(gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json body --jq '.body')"
+          if grep -Fq "## Quellcode (v1.0.0)" <<< "$notes"; then
+            echo "Release description already contains source information."
+            exit 0
+          fi
+          note_file="$(mktemp)"
+          printf '%s\n\n' "$notes" > "$note_file"
+          cat >> "$note_file" <<'NOTES'
+          ## Quellcode (v1.0.0)
+
+          Der Python-/C#-Quellcode des getesteten Installers und die technischen Tests sind offen einsehbar: [Quellcode im Repository](https://github.com/Koarria/Harvester-German-Translation/tree/main/source).
+
+          **Direkter Quellcode-Download:** `Harvester_GOG_Deutsch_Source_v1.0.0.zip` unter den Release-Assets. Bitte dieses gesonderte Source-ZIP verwenden; GitHubs automatisch erzeugte „Source code“-Archive beziehen sich auf den ursprünglichen Git-Tag.
+
+          Das private binäre Delta-ZIP und die Original-/Übersetzungsressourcen sind nicht im Quellpaket enthalten. Der Quellcode allein reicht für einen vollständig identischen Nachbau nicht aus; Einzelheiten in [source/README.md](https://github.com/Koarria/Harvester-German-Translation/blob/main/source/README.md). Der unveränderte `v1.0.0`-Tag und das getestete Installer-ZIP bleiben erhalten.
+          NOTES
+          gh release edit v1.0.0 --repo "$GITHUB_REPOSITORY" --notes-file "$note_file"
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json body --jq '.body' | grep -F '## Quellcode (v1.0.0)'
+          echo "PASS: existing release notes now link verified public source."
 # Source asset has exactly 42 text files. The v1.0.0 Git tag is never moved.
