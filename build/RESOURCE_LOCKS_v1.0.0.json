@@ -1,0 +1,668 @@
+{
+  "schema": "harvester-public-resources-git-blob-locks-v1",
+  "tested_github_build_commit": "cd0b3c62f1b374055a47ac819e2ace4e5ff46e46",
+  "audited_private_delta_sha256": "e690300e4d858992c140d00eceee1ef9e6a4911f32faf98ed7feba93f5794768",
+  "file_count": 132,
+  "files": [
+    {
+      "path": "resources/delta/Harvester_GOG_Deutsch_Delta_v1.0.0.zip",
+      "blob_sha1": "4fb8f205522e454444f8008dba5d30db304be122",
+      "size_bytes": 328000
+    },
+    {
+      "path": "resources/payload/Harvester_Deutsch_Patcher.exe",
+      "blob_sha1": "ee4a1d12fa642ee1e151cec6f1fb031890b85c58",
+      "size_bytes": 25600
+    },
+    {
+      "path": "resources/payload/Regeln.xml",
+      "blob_sha1": "ea437f742c7ef7287ebcecff549ec770a330ef8e",
+      "size_bytes": 21863
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C001B_de_10px.srt",
+      "blob_sha1": "60327d08f66b0c5ea87cb3fb9d0a32822540c340",
+      "size_bytes": 2067
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C005_de_10px.srt",
+      "blob_sha1": "990414519246f147d4b0a9b855a6eeb8a2515191",
+      "size_bytes": 367
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C006_de_10px.srt",
+      "blob_sha1": "cf648aa8a5e5c7208904703c47537c52593ba4d2",
+      "size_bytes": 554
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C008A_de_10px.srt",
+      "blob_sha1": "be9c42e6dac323542bdf3d4b289b49fd51a27f11",
+      "size_bytes": 152
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C008B_de_10px.srt",
+      "blob_sha1": "6af2287bd387ec0d16c3b0ec168dfe44020d36df",
+      "size_bytes": 95
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C010_de_10px.srt",
+      "blob_sha1": "9f062f8d39da24ef1eae4c8cb60b1bf5df1c2a66",
+      "size_bytes": 265
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C011_de_10px.srt",
+      "blob_sha1": "f43809b4b98d07249bd4a4e64d64d6025b58fb67",
+      "size_bytes": 65
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C016A_de_10px.srt",
+      "blob_sha1": "51c4f51cb59a4a53402f6ef6c78ed14dcd85832e",
+      "size_bytes": 84
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C019B_de_10px.srt",
+      "blob_sha1": "fd19c841dcd98b44bb94128f4aadf4c2f0ab20df",
+      "size_bytes": 103
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C021_de_10px.srt",
+      "blob_sha1": "c8d77bcf7bfa9a29baf944102c0b0e49b4df25f5",
+      "size_bytes": 125
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C022A_de_10px.srt",
+      "blob_sha1": "83934e05309eef918a4ba8e4942661c8a12d6286",
+      "size_bytes": 172
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C022B_de_10px.srt",
+      "blob_sha1": "0544aa5b792ccc4bfbb267da15b95986419b3e86",
+      "size_bytes": 164
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C023A_de_10px.srt",
+      "blob_sha1": "d7e42abaaa4f112d479c8cf0be095d92330d1a4b",
+      "size_bytes": 43
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C025A_de_10px.srt",
+      "blob_sha1": "abb117597362f633629d54cb51034e16b2c56386",
+      "size_bytes": 64
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C025B_de_10px.srt",
+      "blob_sha1": "985ec5be9913f6548544dc23130eb1944ff22c7f",
+      "size_bytes": 56
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C027A_de_10px.srt",
+      "blob_sha1": "a8eb99e59e68e8ac61cf80bb5609fa93f386b15c",
+      "size_bytes": 70
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C027B_de_10px.srt",
+      "blob_sha1": "6be56a4320a4ca0024620b9f0fb8785c43334954",
+      "size_bytes": 69
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C040_de_10px.srt",
+      "blob_sha1": "2c4c9d89063f9cd1fb6cfc1c1d4c47d818cd5cfa",
+      "size_bytes": 376
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C042_de_10px.srt",
+      "blob_sha1": "45e7e115d489c68b7d8eb5b1015458d7dc4840b9",
+      "size_bytes": 98
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C044_de_10px.srt",
+      "blob_sha1": "88316efde6e49e2dc35f26bc0e5c3453e290e3e4",
+      "size_bytes": 404
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C052_de_10px.srt",
+      "blob_sha1": "c5ac197a5a3a0e1ffdd36125b3a65b05b93d5701",
+      "size_bytes": 107
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C053_de_10px.srt",
+      "blob_sha1": "6e78843ac0d4d70f6afbd5e01713771c90009149",
+      "size_bytes": 91
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C057_de_10px.srt",
+      "blob_sha1": "7253cce0ae6ca698b928de0f99226331a84f5e26",
+      "size_bytes": 47
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C058_de_10px.srt",
+      "blob_sha1": "df33feaa4e571b14f121e4cdaed6663a40e82c8a",
+      "size_bytes": 84
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C060_de_10px.srt",
+      "blob_sha1": "f8aa29b9187d623e89f2e135b3de640e7a7854b6",
+      "size_bytes": 61
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C060A_de_10px.srt",
+      "blob_sha1": "62701471a4ab4e394a5bd531a8c87c256d22c6b4",
+      "size_bytes": 141
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C063A_de_10px.srt",
+      "blob_sha1": "1d8975cdf953bc01481fe6ff5109286655c9a2cf",
+      "size_bytes": 51
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C063B_de_10px.srt",
+      "blob_sha1": "eba8b69b4956b234117bb7017db6ddb9c397cc39",
+      "size_bytes": 89
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C063D_de_10px.srt",
+      "blob_sha1": "58da1d9bd9b3d4e7978a98ce10a03c4a38590d7a",
+      "size_bytes": 71
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C063E_de_10px.srt",
+      "blob_sha1": "42a752f62887a7135184f073e697349c825c76c8",
+      "size_bytes": 63
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C070_de_10px.srt",
+      "blob_sha1": "cf95e0dd70a2c98df8e27eb0bba110baa0a37e0f",
+      "size_bytes": 236
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C072_de_10px.srt",
+      "blob_sha1": "e822352b7e1ee7f8f7ffb426bfb006deb56fe569",
+      "size_bytes": 72
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C073_de_10px.srt",
+      "blob_sha1": "514970abb657ced2a41b3b82c7d4e2ac24d754d5",
+      "size_bytes": 71
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C076_de_10px.srt",
+      "blob_sha1": "16339ba91ef2cfe9e00a251076e0f87d65df5c43",
+      "size_bytes": 80
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C085_de_10px.srt",
+      "blob_sha1": "c6cb4d89bba1eccfefd5938f325b5508ab4dfffe",
+      "size_bytes": 60
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C091_de_10px.srt",
+      "blob_sha1": "69108a23e50a776c3c9d8c4c40915a298826f2a1",
+      "size_bytes": 73
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C093_de_10px.srt",
+      "blob_sha1": "8536a7772132a551909d981962feff80f3c322ea",
+      "size_bytes": 91
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C094_de_10px.srt",
+      "blob_sha1": "d9d8882619e58bcc5a0c56b3a124900482430d25",
+      "size_bytes": 141
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C096_de_10px.srt",
+      "blob_sha1": "bdb3de34ae8268bbfb971c462c0c92c8866a0f31",
+      "size_bytes": 134
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C096A_de_10px.srt",
+      "blob_sha1": "81f553e721812cd52a1861cd3ba8284c224a9cee",
+      "size_bytes": 96
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C101_de_10px.srt",
+      "blob_sha1": "8020997e6ad9636a29956f25e5335bb701a78c67",
+      "size_bytes": 69
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C110_de_10px.srt",
+      "blob_sha1": "b65dd2581eb848c26f5ff6eb39158d9dabc29acf",
+      "size_bytes": 158
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C112S4_de_10px.srt",
+      "blob_sha1": "29e03160b841626c9f450c46d9792c332fa97c92",
+      "size_bytes": 122
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C112S7_de_10px.srt",
+      "blob_sha1": "6b86ff7975d96b37b6f138543d8d67e7ced11960",
+      "size_bytes": 114
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C117_de_10px.srt",
+      "blob_sha1": "92999adae04c3863e35bdc68c83df822b12b12ec",
+      "size_bytes": 95
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C119_de_10px.srt",
+      "blob_sha1": "e7f8f82cf2dd503175a83914babbb33a34327639",
+      "size_bytes": 165
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C119A_CD1_de_10px.srt",
+      "blob_sha1": "8e2220f8b1365e2259a20d36490997f73d032d51",
+      "size_bytes": 189
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C119A_CD3_de_10px.srt",
+      "blob_sha1": "de20f1453a7ed2390bdc405c1a847464d025b3b8",
+      "size_bytes": 189
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C119B_de_10px.srt",
+      "blob_sha1": "e11879ee9a7e2a03b80e45efd116503dbd8aab32",
+      "size_bytes": 58
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C119C_de_10px.srt",
+      "blob_sha1": "01d294ec7d1498edee7db557963d06790178c4e9",
+      "size_bytes": 58
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C123_de_10px.srt",
+      "blob_sha1": "84a84a956d09ff8428ca3fc454e207f916b91263",
+      "size_bytes": 82
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C123A_de_10px.srt",
+      "blob_sha1": "1c6aabec33e7d71fc4f2dcbab8f71dedff19926c",
+      "size_bytes": 96
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C123B_de_10px.srt",
+      "blob_sha1": "3628101fc40f329aee0f1e7dae8256fb813be222",
+      "size_bytes": 82
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C131_de_10px.srt",
+      "blob_sha1": "11e320bb270eace24066c629716bdf03dbc895ec",
+      "size_bytes": 1346
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C131B_de_10px.srt",
+      "blob_sha1": "b82c9f67fd225b39438e20c10618eca2913c77db",
+      "size_bytes": 984
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C135_de_10px.srt",
+      "blob_sha1": "096e8b8eaf3fcb3760167505f44039aee9456016",
+      "size_bytes": 50
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C149_de_10px.srt",
+      "blob_sha1": "e2388e27b6e34a96607efe9033c8e5c8be5cf761",
+      "size_bytes": 89
+    },
+    {
+      "path": "resources/payload/subtitles/10px/C150_de_10px.srt",
+      "blob_sha1": "518c60edf2ea6aa921e9aae9f4e42af689f887f5",
+      "size_bytes": 46
+    },
+    {
+      "path": "resources/payload/subtitles/10px/MIDGET02_de_10px.srt",
+      "blob_sha1": "8442f59591e23b55398816a0ec991183890a19b6",
+      "size_bytes": 344
+    },
+    {
+      "path": "resources/payload/subtitles/10px/NUDETATU_de_10px.srt",
+      "blob_sha1": "3b04d080e402ce6c71659392d87b50ac1682ec16",
+      "size_bytes": 60
+    },
+    {
+      "path": "resources/payload/subtitles/10px/OVERNITE_de_10px.srt",
+      "blob_sha1": "75471d3a78d3827072caea1216d0fb252954eb26",
+      "size_bytes": 266
+    },
+    {
+      "path": "resources/payload/subtitles/10px/RANGSHOT_de_10px.srt",
+      "blob_sha1": "80411af715510701becb098d0991a290e35daf8c",
+      "size_bytes": 119
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C001B_de_11px.srt",
+      "blob_sha1": "60327d08f66b0c5ea87cb3fb9d0a32822540c340",
+      "size_bytes": 2067
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C005_de_11px.srt",
+      "blob_sha1": "990414519246f147d4b0a9b855a6eeb8a2515191",
+      "size_bytes": 367
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C006_de_11px.srt",
+      "blob_sha1": "cf648aa8a5e5c7208904703c47537c52593ba4d2",
+      "size_bytes": 554
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C008A_de_11px.srt",
+      "blob_sha1": "be9c42e6dac323542bdf3d4b289b49fd51a27f11",
+      "size_bytes": 152
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C008B_de_11px.srt",
+      "blob_sha1": "6af2287bd387ec0d16c3b0ec168dfe44020d36df",
+      "size_bytes": 95
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C010_de_11px.srt",
+      "blob_sha1": "9f062f8d39da24ef1eae4c8cb60b1bf5df1c2a66",
+      "size_bytes": 265
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C011_de_11px.srt",
+      "blob_sha1": "f43809b4b98d07249bd4a4e64d64d6025b58fb67",
+      "size_bytes": 65
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C016A_de_11px.srt",
+      "blob_sha1": "51c4f51cb59a4a53402f6ef6c78ed14dcd85832e",
+      "size_bytes": 84
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C019B_de_11px.srt",
+      "blob_sha1": "fd19c841dcd98b44bb94128f4aadf4c2f0ab20df",
+      "size_bytes": 103
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C021_de_11px.srt",
+      "blob_sha1": "c8d77bcf7bfa9a29baf944102c0b0e49b4df25f5",
+      "size_bytes": 125
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C022A_de_11px.srt",
+      "blob_sha1": "83934e05309eef918a4ba8e4942661c8a12d6286",
+      "size_bytes": 172
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C022B_de_11px.srt",
+      "blob_sha1": "0544aa5b792ccc4bfbb267da15b95986419b3e86",
+      "size_bytes": 164
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C023A_de_11px.srt",
+      "blob_sha1": "d7e42abaaa4f112d479c8cf0be095d92330d1a4b",
+      "size_bytes": 43
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C025A_de_11px.srt",
+      "blob_sha1": "abb117597362f633629d54cb51034e16b2c56386",
+      "size_bytes": 64
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C025B_de_11px.srt",
+      "blob_sha1": "985ec5be9913f6548544dc23130eb1944ff22c7f",
+      "size_bytes": 56
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C027A_de_11px.srt",
+      "blob_sha1": "a8eb99e59e68e8ac61cf80bb5609fa93f386b15c",
+      "size_bytes": 70
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C027B_de_11px.srt",
+      "blob_sha1": "6be56a4320a4ca0024620b9f0fb8785c43334954",
+      "size_bytes": 69
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C040_de_11px.srt",
+      "blob_sha1": "2c4c9d89063f9cd1fb6cfc1c1d4c47d818cd5cfa",
+      "size_bytes": 376
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C042_de_11px.srt",
+      "blob_sha1": "45e7e115d489c68b7d8eb5b1015458d7dc4840b9",
+      "size_bytes": 98
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C044_de_11px.srt",
+      "blob_sha1": "88316efde6e49e2dc35f26bc0e5c3453e290e3e4",
+      "size_bytes": 404
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C052_de_11px.srt",
+      "blob_sha1": "c5ac197a5a3a0e1ffdd36125b3a65b05b93d5701",
+      "size_bytes": 107
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C053_de_11px.srt",
+      "blob_sha1": "6e78843ac0d4d70f6afbd5e01713771c90009149",
+      "size_bytes": 91
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C057_de_11px.srt",
+      "blob_sha1": "7253cce0ae6ca698b928de0f99226331a84f5e26",
+      "size_bytes": 47
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C058_de_11px.srt",
+      "blob_sha1": "df33feaa4e571b14f121e4cdaed6663a40e82c8a",
+      "size_bytes": 84
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C060_de_11px.srt",
+      "blob_sha1": "f8aa29b9187d623e89f2e135b3de640e7a7854b6",
+      "size_bytes": 61
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C060A_de_11px.srt",
+      "blob_sha1": "62701471a4ab4e394a5bd531a8c87c256d22c6b4",
+      "size_bytes": 141
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C063A_de_11px.srt",
+      "blob_sha1": "1d8975cdf953bc01481fe6ff5109286655c9a2cf",
+      "size_bytes": 51
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C063B_de_11px.srt",
+      "blob_sha1": "eba8b69b4956b234117bb7017db6ddb9c397cc39",
+      "size_bytes": 89
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C063D_de_11px.srt",
+      "blob_sha1": "58da1d9bd9b3d4e7978a98ce10a03c4a38590d7a",
+      "size_bytes": 71
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C063E_de_11px.srt",
+      "blob_sha1": "42a752f62887a7135184f073e697349c825c76c8",
+      "size_bytes": 63
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C070_de_11px.srt",
+      "blob_sha1": "cf95e0dd70a2c98df8e27eb0bba110baa0a37e0f",
+      "size_bytes": 236
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C072_de_11px.srt",
+      "blob_sha1": "e822352b7e1ee7f8f7ffb426bfb006deb56fe569",
+      "size_bytes": 72
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C073_de_11px.srt",
+      "blob_sha1": "514970abb657ced2a41b3b82c7d4e2ac24d754d5",
+      "size_bytes": 71
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C076_de_11px.srt",
+      "blob_sha1": "16339ba91ef2cfe9e00a251076e0f87d65df5c43",
+      "size_bytes": 80
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C085_de_11px.srt",
+      "blob_sha1": "c6cb4d89bba1eccfefd5938f325b5508ab4dfffe",
+      "size_bytes": 60
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C091_de_11px.srt",
+      "blob_sha1": "69108a23e50a776c3c9d8c4c40915a298826f2a1",
+      "size_bytes": 73
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C093_de_11px.srt",
+      "blob_sha1": "8536a7772132a551909d981962feff80f3c322ea",
+      "size_bytes": 91
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C094_de_11px.srt",
+      "blob_sha1": "d9d8882619e58bcc5a0c56b3a124900482430d25",
+      "size_bytes": 141
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C096_de_11px.srt",
+      "blob_sha1": "bdb3de34ae8268bbfb971c462c0c92c8866a0f31",
+      "size_bytes": 134
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C096A_de_11px.srt",
+      "blob_sha1": "81f553e721812cd52a1861cd3ba8284c224a9cee",
+      "size_bytes": 96
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C101_de_11px.srt",
+      "blob_sha1": "8020997e6ad9636a29956f25e5335bb701a78c67",
+      "size_bytes": 69
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C110_de_11px.srt",
+      "blob_sha1": "b65dd2581eb848c26f5ff6eb39158d9dabc29acf",
+      "size_bytes": 158
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C112S4_de_11px.srt",
+      "blob_sha1": "29e03160b841626c9f450c46d9792c332fa97c92",
+      "size_bytes": 122
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C112S7_de_11px.srt",
+      "blob_sha1": "6b86ff7975d96b37b6f138543d8d67e7ced11960",
+      "size_bytes": 114
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C117_de_11px.srt",
+      "blob_sha1": "92999adae04c3863e35bdc68c83df822b12b12ec",
+      "size_bytes": 95
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C119_de_11px.srt",
+      "blob_sha1": "e7f8f82cf2dd503175a83914babbb33a34327639",
+      "size_bytes": 165
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C119A_CD1_de_11px.srt",
+      "blob_sha1": "8e2220f8b1365e2259a20d36490997f73d032d51",
+      "size_bytes": 189
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C119A_CD3_de_11px.srt",
+      "blob_sha1": "de20f1453a7ed2390bdc405c1a847464d025b3b8",
+      "size_bytes": 189
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C119B_de_11px.srt",
+      "blob_sha1": "e11879ee9a7e2a03b80e45efd116503dbd8aab32",
+      "size_bytes": 58
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C119C_de_11px.srt",
+      "blob_sha1": "01d294ec7d1498edee7db557963d06790178c4e9",
+      "size_bytes": 58
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C123_de_11px.srt",
+      "blob_sha1": "84a84a956d09ff8428ca3fc454e207f916b91263",
+      "size_bytes": 82
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C123A_de_11px.srt",
+      "blob_sha1": "1c6aabec33e7d71fc4f2dcbab8f71dedff19926c",
+      "size_bytes": 96
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C123B_de_11px.srt",
+      "blob_sha1": "3628101fc40f329aee0f1e7dae8256fb813be222",
+      "size_bytes": 82
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C131_de_11px.srt",
+      "blob_sha1": "11e320bb270eace24066c629716bdf03dbc895ec",
+      "size_bytes": 1346
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C131B_de_11px.srt",
+      "blob_sha1": "b82c9f67fd225b39438e20c10618eca2913c77db",
+      "size_bytes": 984
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C135_de_11px.srt",
+      "blob_sha1": "096e8b8eaf3fcb3760167505f44039aee9456016",
+      "size_bytes": 50
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C149_de_11px.srt",
+      "blob_sha1": "e2388e27b6e34a96607efe9033c8e5c8be5cf761",
+      "size_bytes": 89
+    },
+    {
+      "path": "resources/payload/subtitles/11px/C150_de_11px.srt",
+      "blob_sha1": "518c60edf2ea6aa921e9aae9f4e42af689f887f5",
+      "size_bytes": 46
+    },
+    {
+      "path": "resources/payload/subtitles/11px/MIDGET02_de_11px.srt",
+      "blob_sha1": "8442f59591e23b55398816a0ec991183890a19b6",
+      "size_bytes": 344
+    },
+    {
+      "path": "resources/payload/subtitles/11px/NUDETATU_de_11px.srt",
+      "blob_sha1": "3b04d080e402ce6c71659392d87b50ac1682ec16",
+      "size_bytes": 60
+    },
+    {
+      "path": "resources/payload/subtitles/11px/OVERNITE_de_11px.srt",
+      "blob_sha1": "75471d3a78d3827072caea1216d0fb252954eb26",
+      "size_bytes": 266
+    },
+    {
+      "path": "resources/payload/subtitles/11px/RANGSHOT_de_11px.srt",
+      "blob_sha1": "80411af715510701becb098d0991a290e35daf8c",
+      "size_bytes": 119
+    },
+    {
+      "path": "resources/payload/subtitles/endings/C002A_DE.srt",
+      "blob_sha1": "f508e7f9e105a2d46ce5af916ae01c1aaf06fec8",
+      "size_bytes": 2841
+    },
+    {
+      "path": "resources/payload/subtitles/endings/C002B_DE.srt",
+      "blob_sha1": "00bf60703fb5ed54c948174a76dc4d14dbf107d7",
+      "size_bytes": 3399
+    },
+    {
+      "path": "resources/payload/subtitles/endings/C003_DE.srt",
+      "blob_sha1": "92623b70a29c927666d539e4fd73302f7dd53271",
+      "size_bytes": 997
+    },
+    {
+      "path": "resources/payload/subtitles/endings/C004_DE.srt",
+      "blob_sha1": "e1d035bc1b93aa7a735422dd540abd0afa6fb5e2",
+      "size_bytes": 1178
+    },
+    {
+      "path": "resources/payload/VideoManifest.xml",
+      "blob_sha1": "d043ad5a2b4efe9ce1dda8dea3210f779097beac",
+      "size_bytes": 68649
+    }
+  ]
+}
