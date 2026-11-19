@@ -1,0 +1,5 @@
+1
+00:00:00,320 --> 00:00:03,180
+Diese Krankheiten können ziemlich
+schreckliche Folgen haben.
+
