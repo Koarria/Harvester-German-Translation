@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='utf-8'?>
+<HarvesterPatch version="GOG-DE-UI2" target="Harvester_DE_GOG">
+  <Assets>
+    <Asset name="fba2526bc869dff9825197807513134b0f6ddb31268aea4fc1bbc35741f72b4b.bin" sha="fba2526bc869dff9825197807513134b0f6ddb31268aea4fc1bbc35741f72b4b" size="528021" />
+    <Asset name="bc601d745f6edbc98b3c0abc663a51c9993801a367268723b6bf4b22c72ebdba.bin" sha="bc601d745f6edbc98b3c0abc663a51c9993801a367268723b6bf4b22c72ebdba" size="29404" />
+    <Asset name="44537d72eb10dac051622bae4dc82407e1213599743910d55ce3ea0881c868e6.bin" sha="44537d72eb10dac051622bae4dc82407e1213599743910d55ce3ea0881c868e6" size="307212" />
+    <Asset name="f12ab57e535de318a9dc0852db757ece90bff2867120b54516dcf341eeb882c9.bin" sha="f12ab57e535de318a9dc0852db757ece90bff2867120b54516dcf341eeb882c9" size="307212" />
+    <Asset name="e59974f77e5223a8a83b277ee07438e7423175691eb488ca7d6c6a79118de6ef.bin" sha="e59974f77e5223a8a83b277ee07438e7423175691eb488ca7d6c6a79118de6ef" size="302448" />
+    <Asset name="cd5951e530bcab8146180b418238819a761dbceb90cafd713a13bd50bc658b08.bin" sha="cd5951e530bcab8146180b418238819a761dbceb90cafd713a13bd50bc658b08" size="1618" />
+    <Asset name="6dd0fa216c67f6450c226313356d63911e680492bd88309bd8d0d6320ddfcbab.bin" sha="6dd0fa216c67f6450c226313356d63911e680492bd88309bd8d0d6320ddfcbab" size="11284" />
+    <Asset name="625d49f3bfb4c9c08734813b93ec64c127a94043f2fa3f60864897b8253d20cd.bin" sha="625d49f3bfb4c9c08734813b93ec64c127a94043f2fa3f60864897b8253d20cd" size="19846" />
+    <Asset name="d067372a91d0a004fd4fec03bc7fcf5548e42332e6458a02372a2e76b3b77b62.bin" sha="d067372a91d0a004fd4fec03bc7fcf5548e42332e6458a02372a2e76b3b77b62" size="11284" />
+    <Asset name="7c7138cb4e4ecdf4e040e469746231daf470aafdbc8756091a75a549ff9e050b.bin" sha="7c7138cb4e4ecdf4e040e469746231daf470aafdbc8756091a75a549ff9e050b" size="19846" />
+    <Asset name="7208ede22c8d8a274d8f57ef21fcf57128d17ef6241054ecce1118cc95b06f95.bin" sha="7208ede22c8d8a274d8f57ef21fcf57128d17ef6241054ecce1118cc95b06f95" size="825" />
+    <Asset name="f21e4b7ec2799d56a29fab0dbe717329b1f6d7b93f7f8fa6158d948c4fa1713b.bin" sha="f21e4b7ec2799d56a29fab0dbe717329b1f6d7b93f7f8fa6158d948c4fa1713b" size="58458" />
+    <Asset name="2e1f95847d2f544ad8fcc492da80e805b88e23c36eae3a5258e5faffa89a9a4a.bin" sha="2e1f95847d2f544ad8fcc492da80e805b88e23c36eae3a5258e5faffa89a9a4a" size="307212" />
+    <Asset name="5cc7509b09e1e489ea12b75e012868b5e02b10d58d1becf27f8bf80d96de16ae.bin" sha="5cc7509b09e1e489ea12b75e012868b5e02b10d58d1becf27f8bf80d96de16ae" size="307212" />
+    <Asset name="832cbcceb413c721b76e5c46d36302ab55ccfa023b961c78c4046eec40705e1b.bin" sha="832cbcceb413c721b76e5c46d36302ab55ccfa023b961c78c4046eec40705e1b" size="30918" />
+    <Asset name="de92f9ca561ff38a2e5e88d9deda7bb8a612c39f4961015cb76c5a161ae022ce.bin" sha="de92f9ca561ff38a2e5e88d9deda7bb8a612c39f4961015cb76c5a161ae022ce" size="338783" />
+    <Asset name="054bbe01127b301af3aa10b735a4dde958dd72bf4309c7c051581825e3bfc90c.bin" sha="054bbe01127b301af3aa10b735a4dde958dd72bf4309c7c051581825e3bfc90c" size="30839" />
+    <Asset name="b9af2b6931eeafa87a59215c8fe1d0547dce851402460d99271a547b638ed1dd.bin" sha="b9af2b6931eeafa87a59215c8fe1d0547dce851402460d99271a547b638ed1dd" size="307212" />
+  </Assets>
+  <Image name="HARVEST.DAT" sha="d195486f30079c01e3561c6590d7048f19f77e0332c201700f838b1cb2db42e9" count="330">
+    <Replace path="HARVEST.SCR" asset="fba2526bc869dff9825197807513134b0f6ddb31268aea4fc1bbc35741f72b4b.bin" />
+    <Replace path="DIALOG.RSP" asset="bc601d745f6edbc98b3c0abc663a51c9993801a367268723b6bf4b22c72ebdba.bin" />
+    <Replace path="GRAPHIC/OTHER/KEYSHELP.BM" asset="44537d72eb10dac051622bae4dc82407e1213599743910d55ce3ea0881c868e6.bin" />
+    <Replace path="GRAPHIC/OTHER/MOUSHELP.BM" asset="f12ab57e535de318a9dc0852db757ece90bff2867120b54516dcf341eeb882c9.bin" />
+    <Replace path="DIALOGUE.IDX" asset="e59974f77e5223a8a83b277ee07438e7423175691eb488ca7d6c6a79118de6ef.bin" />
+    <Replace path="ADJHEAD.RCS" asset="cd5951e530bcab8146180b418238819a761dbceb90cafd713a13bd50bc658b08.bin" />
+    <Replace path="GRAPHIC/FONT/TEXTFONT.CFT" asset="6dd0fa216c67f6450c226313356d63911e680492bd88309bd8d0d6320ddfcbab.bin" />
+    <Replace path="GRAPHIC/FONT/MEDFONT1.CFT" asset="625d49f3bfb4c9c08734813b93ec64c127a94043f2fa3f60864897b8253d20cd.bin" />
+    <Replace path="GRAPHIC/FONT/TEXTFNT2.CFT" asset="d067372a91d0a004fd4fec03bc7fcf5548e42332e6458a02372a2e76b3b77b62.bin" />
+    <Replace path="GRAPHIC/FONT/MEDFONT2.CFT" asset="7c7138cb4e4ecdf4e040e469746231daf470aafdbc8756091a75a549ff9e050b.bin" />
+    <Replace path="MENU.INI" asset="7208ede22c8d8a274d8f57ef21fcf57128d17ef6241054ecce1118cc95b06f95.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/KEYWORD.BM" asset="f21e4b7ec2799d56a29fab0dbe717329b1f6d7b93f7f8fa6158d948c4fa1713b.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/LOADGAME.BM" asset="2e1f95847d2f544ad8fcc492da80e805b88e23c36eae3a5258e5faffa89a9a4a.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/SAVEGAME.BM" asset="5cc7509b09e1e489ea12b75e012868b5e02b10d58d1becf27f8bf80d96de16ae.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/MOUSHELP.BM" asset="f12ab57e535de318a9dc0852db757ece90bff2867120b54516dcf341eeb882c9.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/KEYSHELP.BM" asset="44537d72eb10dac051622bae4dc82407e1213599743910d55ce3ea0881c868e6.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/TIPS.BM" asset="832cbcceb413c721b76e5c46d36302ab55ccfa023b961c78c4046eec40705e1b.bin" />
+  </Image>
+  <Image name="HARVEST3.DAT" sha="a299652fca9d3671b646408a670fa252682b84672f79190a8a37888ff193efac" count="135">
+    <Replace path="HARVEST.SCR" asset="fba2526bc869dff9825197807513134b0f6ddb31268aea4fc1bbc35741f72b4b.bin" />
+    <Replace path="GRAPHIC/OTHER/KEYSHELP.BM" asset="44537d72eb10dac051622bae4dc82407e1213599743910d55ce3ea0881c868e6.bin" />
+    <Replace path="GRAPHIC/OTHER/MOUSHELP.BM" asset="f12ab57e535de318a9dc0852db757ece90bff2867120b54516dcf341eeb882c9.bin" />
+    <Replace path="DIALOGUE.IDX" asset="e59974f77e5223a8a83b277ee07438e7423175691eb488ca7d6c6a79118de6ef.bin" />
+    <Replace path="ADJHEAD.RCS" asset="cd5951e530bcab8146180b418238819a761dbceb90cafd713a13bd50bc658b08.bin" />
+    <Replace path="GRAPHIC/FONT/TEXTFONT.CFT" asset="6dd0fa216c67f6450c226313356d63911e680492bd88309bd8d0d6320ddfcbab.bin" />
+    <Replace path="GRAPHIC/FONT/MEDFONT1.CFT" asset="625d49f3bfb4c9c08734813b93ec64c127a94043f2fa3f60864897b8253d20cd.bin" />
+    <Replace path="GRAPHIC/FONT/TEXTFNT2.CFT" asset="d067372a91d0a004fd4fec03bc7fcf5548e42332e6458a02372a2e76b3b77b62.bin" />
+    <Replace path="GRAPHIC/FONT/MEDFONT2.CFT" asset="7c7138cb4e4ecdf4e040e469746231daf470aafdbc8756091a75a549ff9e050b.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/KEYWORD.BM" asset="f21e4b7ec2799d56a29fab0dbe717329b1f6d7b93f7f8fa6158d948c4fa1713b.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/LOADGAME.BM" asset="2e1f95847d2f544ad8fcc492da80e805b88e23c36eae3a5258e5faffa89a9a4a.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/SAVEGAME.BM" asset="5cc7509b09e1e489ea12b75e012868b5e02b10d58d1becf27f8bf80d96de16ae.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/MOUSHELP.BM" asset="f12ab57e535de318a9dc0852db757ece90bff2867120b54516dcf341eeb882c9.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/KEYSHELP.BM" asset="44537d72eb10dac051622bae4dc82407e1213599743910d55ce3ea0881c868e6.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/TIPS.BM" asset="832cbcceb413c721b76e5c46d36302ab55ccfa023b961c78c4046eec40705e1b.bin" />
+  </Image>
+  <Image name="HARVEST4.DAT" sha="c28d617c3a0ca0aac4d844f9bcd1eee43230af383d98d4d31738fb1e859449e4" count="112">
+    <Replace path="HARVEST.SCR" asset="de92f9ca561ff38a2e5e88d9deda7bb8a612c39f4961015cb76c5a161ae022ce.bin" />
+    <Replace path="DIALOG.RSP" asset="054bbe01127b301af3aa10b735a4dde958dd72bf4309c7c051581825e3bfc90c.bin" />
+    <Replace path="GRAPHIC/OTHER/KEYSHELP.BM" asset="44537d72eb10dac051622bae4dc82407e1213599743910d55ce3ea0881c868e6.bin" />
+    <Replace path="GRAPHIC/OTHER/MOUSHELP.BM" asset="f12ab57e535de318a9dc0852db757ece90bff2867120b54516dcf341eeb882c9.bin" />
+    <Replace path="DIALOGUE.IDX" asset="e59974f77e5223a8a83b277ee07438e7423175691eb488ca7d6c6a79118de6ef.bin" />
+    <Replace path="ADJHEAD.RCS" asset="cd5951e530bcab8146180b418238819a761dbceb90cafd713a13bd50bc658b08.bin" />
+    <Replace path="GRAPHIC/FONT/TEXTFONT.CFT" asset="6dd0fa216c67f6450c226313356d63911e680492bd88309bd8d0d6320ddfcbab.bin" />
+    <Replace path="GRAPHIC/FONT/MEDFONT1.CFT" asset="625d49f3bfb4c9c08734813b93ec64c127a94043f2fa3f60864897b8253d20cd.bin" />
+    <Replace path="GRAPHIC/FONT/TEXTFNT2.CFT" asset="d067372a91d0a004fd4fec03bc7fcf5548e42332e6458a02372a2e76b3b77b62.bin" />
+    <Replace path="GRAPHIC/FONT/MEDFONT2.CFT" asset="7c7138cb4e4ecdf4e040e469746231daf470aafdbc8756091a75a549ff9e050b.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/KEYWORD.BM" asset="f21e4b7ec2799d56a29fab0dbe717329b1f6d7b93f7f8fa6158d948c4fa1713b.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/LOADGAME.BM" asset="b9af2b6931eeafa87a59215c8fe1d0547dce851402460d99271a547b638ed1dd.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/SAVEGAME.BM" asset="5cc7509b09e1e489ea12b75e012868b5e02b10d58d1becf27f8bf80d96de16ae.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/MOUSHELP.BM" asset="f12ab57e535de318a9dc0852db757ece90bff2867120b54516dcf341eeb882c9.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/KEYSHELP.BM" asset="44537d72eb10dac051622bae4dc82407e1213599743910d55ce3ea0881c868e6.bin" />
+    <Bitmap path="1:/GRAPHIC/OTHER/TIPS.BM" asset="832cbcceb413c721b76e5c46d36302ab55ccfa023b961c78c4046eec40705e1b.bin" />
+  </Image>
+  <Critical path="HARVEST.EXE" sha="6a9f3844254c6b18900685f10a83ca146bc1eec1a396d68eb7dff16cd217e72c" />
+  <Critical path="dosbox_harvester.conf" sha="0fe636973fe69ec99f85fbcdf52ad798fbfd2ab31d19d1e2ffa67924230ca5ca" />
+  <Critical path="dosbox_harvester_single.conf" sha="2c713c93b743433f7ce2b8ea8a9c04c6427fdc64a9eeb3ebb8c0f12b570c1dd6" />
+  <Loose path="MENU.INI" asset="7208ede22c8d8a274d8f57ef21fcf57128d17ef6241054ecce1118cc95b06f95.bin" />
+  <Loose path="DIALOG.RSP" asset="bc601d745f6edbc98b3c0abc663a51c9993801a367268723b6bf4b22c72ebdba.bin" />
+  <Loose path="cloud_saves/MENU.INI" asset="7208ede22c8d8a274d8f57ef21fcf57128d17ef6241054ecce1118cc95b06f95.bin" />
+  <Loose path="cloud_saves/DIALOG.RSP" asset="bc601d745f6edbc98b3c0abc663a51c9993801a367268723b6bf4b22c72ebdba.bin" />
+  <Executable source="6a9f3844254c6b18900685f10a83ca146bc1eec1a396d68eb7dff16cd217e72c" target="c461e05414a38b11c7e7d27c1ad47df823e2bdb87f2087639281cbc39cdb32b2">
+    <Edit offset="281960" old="33" new="1b" />
+    <Edit offset="287883" old="fc06" new="1b04" />
+    <Edit offset="288079" old="3907" new="1b04" />
+    <Edit offset="291068" old="720d" new="1b04" />
+    <Edit offset="291075" old="8a0d" new="1b04" />
+    <Edit offset="291082" old="fc06" new="1b04" />
+    <Edit offset="291123" old="3907" new="1b04" />
+    <Edit offset="297370" old="8814" new="1b04" />
+    <Edit offset="297751" old="5315" new="1b04" />
+    <Edit offset="335235" old="6281" new="1b04" />
+    <Edit offset="361453" old="e791" new="1b04" />
+    <Edit offset="361460" old="cf91" new="1b04" />
+    <Edit offset="365061" old="9698" new="1b04" />
+    <Edit offset="365132" old="9698" new="1b04" />
+    <Edit offset="365221" old="f298" new="1b04" />
+    <Edit offset="365228" old="4399" new="1b04" />
+    <Edit offset="365267" old="0a99" new="1b04" />
+    <Edit offset="365306" old="5b99" new="1b04" />
+    <Edit offset="365320" old="b499" new="1b04" />
+    <Edit offset="365505" old="049a" new="1b04" />
+    <Edit offset="365519" old="7f9a" new="1b04" />
+    <Edit offset="365567" old="b89a" new="1b04" />
+    <Edit offset="365599" old="d09a" new="1b04" />
+    <Edit offset="365606" old="f29a" new="1b04" />
+    <Edit offset="396071" old="82da" new="b499" />
+    <Edit offset="396236" old="c8da" new="d09a" />
+    <Edit offset="396259" old="acda" new="b89a" />
+    <Edit offset="396289" old="19db" new="d09a" />
+    <Edit offset="396312" old="fdda" new="b89a" />
+    <Edit offset="396344" old="4edb" new="b89a" />
+    <Edit offset="396501" old="6adb" new="d09a" />
+    <Edit offset="396583" old="40d9" new="7f9a" />
+    <Edit offset="396631" old="dad9" new="b499" />
+    <Edit offset="396670" old="afd9" new="5b99" />
+    <Edit offset="396849" old="03da" new="5b99" />
+    <Edit offset="396951" old="2cda" new="5b99" />
+    <Edit offset="396999" old="57da" new="b499" />
+    <Edit offset="397468" old="0ed9" new="049a" />
+    <Edit offset="399626" old="82da" new="b499" />
+    <Edit offset="399633" old="c8da" new="d09a" />
+    <Edit offset="399656" old="acda" new="b89a" />
+    <Edit offset="399826" old="19db" new="d09a" />
+    <Edit offset="399849" old="fdda" new="b89a" />
+    <Edit offset="399890" old="6adb" new="d09a" />
+    <Edit offset="399913" old="4edb" new="b89a" />
+    <Edit offset="400211" old="dad9" new="b499" />
+    <Edit offset="400284" old="03da" new="5b99" />
+    <Edit offset="400368" old="2cda" new="5b99" />
+    <Edit offset="400522" old="57da" new="b499" />
+    <Edit offset="401009" old="40d9" new="7f9a" />
+    <Edit offset="401048" old="0ed9" new="049a" />
+    <Edit offset="401087" old="afd9" new="5b99" />
+    <Edit offset="401119" old="dad9" new="b499" />
+    <Edit offset="401178" old="03da" new="5b99" />
+    <Edit offset="401271" old="2cda" new="5b99" />
+    <Edit offset="401301" old="57da" new="b499" />
+    <Edit offset="401385" old="82da" new="b499" />
+    <Edit offset="401825" old="40d9" new="7f9a" />
+    <Edit offset="401864" old="0ed9" new="049a" />
+    <Edit offset="401910" old="afd9" new="5b99" />
+    <Edit offset="402640" old="42dd" new="f29a" />
+    <Edit offset="402681" old="35dd" new="f29a" />
+    <Edit offset="403559" old="acda" new="b89a" />
+    <Edit offset="403670" old="c8da" new="d09a" />
+    <Edit offset="403745" old="19db" new="d09a" />
+    <Edit offset="403768" old="fdda" new="b89a" />
+    <Edit offset="403807" old="6adb" new="d09a" />
+    <Edit offset="403830" old="4edb" new="b89a" />
+    <Edit offset="404130" old="dad9" new="b499" />
+    <Edit offset="404194" old="03da" new="5b99" />
+    <Edit offset="404278" old="2cda" new="5b99" />
+    <Edit offset="404443" old="57da" new="b499" />
+    <Edit offset="404554" old="82da" new="b499" />
+    <Edit offset="404586" old="c8da" new="d09a" />
+    <Edit offset="404609" old="acda" new="b89a" />
+    <Edit offset="404648" old="fdda" new="b89a" />
+    <Edit offset="404777" old="19db" new="d09a" />
+    <Edit offset="404864" old="6adb" new="d09a" />
+    <Edit offset="404887" old="4edb" new="b89a" />
+    <Edit offset="404933" old="40d9" new="7f9a" />
+    <Edit offset="404972" old="0ed9" new="049a" />
+    <Edit offset="405020" old="afd9" new="5b99" />
+    <Edit offset="407971" old="04e8" new="8814" />
+    <Edit offset="408796" old="cbe7" new="8a0d" />
+    <Edit offset="410362" old="d4e8" new="fc06" />
+    <Edit offset="410394" old="bde8" new="3304" />
+    <Edit offset="410417" old="aae8" new="3304" />
+    <Edit offset="410467" old="21e9" new="720d" />
+    <Edit offset="410527" old="e7e8" new="3907" />
+    <Edit offset="412842" old="93ea" new="fc06" />
+    <Edit offset="412874" old="7cea" new="3304" />
+    <Edit offset="412897" old="69ea" new="3304" />
+    <Edit offset="413008" old="bdea" new="720d" />
+    <Edit offset="413031" old="a6ea" new="3907" />
+    <Edit offset="419929" old="aae8" new="3304" />
+    <Edit offset="421077" old="cbe7" new="8a0d" />
+    <Edit offset="421234" old="04e8" new="8814" />
+    <Edit offset="421517" old="bdea" new="720d" />
+    <Edit offset="421540" old="a6ea" new="3907" />
+    <Edit offset="422379" old="93ea" new="fc06" />
+    <Edit offset="422411" old="7cea" new="3304" />
+    <Edit offset="422434" old="69ea" new="3304" />
+    <Edit offset="422996" old="e7e8" new="3907" />
+    <Edit offset="423019" old="d4e8" new="fc06" />
+    <Edit offset="423051" old="bde8" new="3304" />
+    <Edit offset="423119" old="21e9" new="720d" />
+    <Edit offset="427250" old="7cea" new="3304" />
+    <Edit offset="427273" old="69ea" new="3304" />
+    <Edit offset="427375" old="bdea" new="720d" />
+    <Edit offset="427398" old="a6ea" new="3907" />
+    <Edit offset="427421" old="93ea" new="fc06" />
+    <Edit offset="432179" old="2df7" new="4399" />
+    <Edit offset="433087" old="28f6" new="0a99" />
+    <Edit offset="434713" old="9df7" new="4399" />
+    <Edit offset="434822" old="f3f7" new="4399" />
+    <Edit offset="437112" old="42fe" new="8814" />
+    <Edit offset="437312" old="70fe" new="8814" />
+    <Edit offset="437430" old="7afe" new="8a0d" />
+    <Edit offset="437500" old="93fe" new="8814" />
+    <Edit offset="459809" old="400601" new="f29800" />
+    <Edit offset="459818" old="390601" new="969800" />
+    <Edit offset="459827" old="300601" new="e79100" />
+    <Edit offset="459836" old="260601" new="cf9100" />
+    <Edit offset="459845" old="1e0601" new="628100" />
+    <Edit offset="459854" old="170601" new="531500" />
+    <Edit offset="826665" old="02" new="20" />
+    <Edit offset="826745" old="02" new="20" />
+    <Edit offset="828097" old="02" new="20" />
+    <Edit offset="828148" old="02" new="20" />
+    <Edit offset="828327" old="02" new="20" />
+    <Edit offset="828378" old="02" new="20" />
+    <Edit offset="828563" old="02" new="20" />
+    <Edit offset="828614" old="02" new="20" />
+    <Edit offset="834607" old="02" new="20" />
+    <Edit offset="834687" old="02" new="20" />
+    <Edit offset="836061" old="02" new="20" />
+    <Edit offset="836112" old="02" new="20" />
+    <Edit offset="836291" old="02" new="20" />
+    <Edit offset="836342" old="02" new="20" />
+    <Edit offset="836527" old="02" new="20" />
+    <Edit offset="836578" old="02" new="20" />
+    <Edit offset="840666" old="02" new="20" />
+    <Edit offset="840744" old="02" new="20" />
+    <Edit offset="842120" old="02" new="20" />
+    <Edit offset="842171" old="02" new="20" />
+    <Edit offset="842350" old="02" new="20" />
+    <Edit offset="842401" old="02" new="20" />
+    <Edit offset="842586" old="02" new="20" />
+    <Edit offset="842637" old="02" new="20" />
+    <Edit offset="842987" old="02" new="20" />
+    <Edit offset="843067" old="02" new="20" />
+    <Edit offset="844444" old="02" new="20" />
+    <Edit offset="844495" old="02" new="20" />
+    <Edit offset="844676" old="02" new="20" />
+    <Edit offset="844727" old="02" new="20" />
+    <Edit offset="844912" old="02" new="20" />
+    <Edit offset="844963" old="02" new="20" />
+    <Edit offset="994663" old="4d656d6f" new="556e7465" />
+    <Edit offset="994668" old="7920616c6c6f636174696f6e206572726f72" new="737563686520257300000000000000000000" />
+    <Edit offset="995376" old="4d656d6f7279" new="537072696368" />
+    <Edit offset="995383" old="616c6c6f636174696f6e206572726f72" new="6d697420257300000000000000000000" />
+    <Edit offset="995437" old="4d65" new="4e69" />
+    <Edit offset="995440" old="6f727920616c6c6f636174696f6e206572726f72" new="6d20257300000000000000000000000000000000" />
+    <Edit offset="997030" old="4d" new="42" />
+    <Edit offset="997032" old="6d6f727920616c6c6f636174696f6e206572726f72" new="74e474696765202573000000000000000000000000" />
+    <Edit offset="997054" old="4d" new="42" />
+    <Edit offset="997056" old="6d6f727920616c6c6f6361" new="6e75747a65202573206d69" />
+    <Edit offset="997068" old="696f6e206572726f72" new="202573000000000000" />
+    <Edit offset="998844" old="4d" new="42" />
+    <Edit offset="998846" old="6d6f727920616c6c6f6361" new="6e75747a65202573206d69" />
+    <Edit offset="998858" old="696f6e206572726f72" new="000000000000000000" />
+    <Edit offset="999048" old="656d6f727920616c6c6f636174696f6e206572726f72" new="6f6e7461670000000000000000000000000000000000" />
+    <Edit offset="1026710" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="4469656e73746167000000000000000000000000000000" />
+    <Edit offset="1030916" old="656d6f727920616c6c6f636174696f6e206572726f72" new="697474776f6368000000000000000000000000000000" />
+    <Edit offset="1030939" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="446f6e6e65727374616700000000000000000000000000" />
+    <Edit offset="1032650" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="4672656974616700000000000000000000000000000000" />
+    <Edit offset="1032742" old="4d65" new="5361" />
+    <Edit offset="1032745" old="6f727920616c6c6f636174696f6e206572726f72" new="7374616700000000000000000000000000000000" />
+    <Edit offset="1032766" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="416e74776f7274656e0000000000000000000000000000" />
+    <Edit offset="1032823" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="5468656d61000000000000000000000000000000000000" />
+    <Edit offset="1032847" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="5363686c69657373656e00000000000000000000000000" />
+    <Edit offset="1032936" old="4d" new="57" />
+    <Edit offset="1032938" old="6d6f727920616c6c6f636174696f6e206572726f72" new="697465720000000000000000000000000000000000" />
+    <Edit offset="1033016" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="54697070735f45494e0000000000000000000000000000" />
+    <Edit offset="1033139" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="54697070735f4155530000000000000000000000000000" />
+    <Edit offset="1033196" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="54697070735f45494e2020000000000000000000000000" />
+    <Edit offset="1033220" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="54697070735f4155532020000000000000000000000000" />
+    <Edit offset="1033254" old="4d656d6f727920616c6c6f636174696f6e206572726f72" new="202d2045494e0000000000000000000000000000000000" />
+    <Edit offset="1036565" old="796f757220696e76656e746f7279" new="496e76656e746172000000000000" />
+    <Edit offset="1050226" old="4f6666" new="415553" />
+    <Edit offset="1050239" old="4f6666" new="415553" />
+  </Executable>
+</HarvesterPatch>
