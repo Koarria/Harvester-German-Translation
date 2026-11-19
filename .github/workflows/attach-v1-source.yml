@@ -1,0 +1,120 @@
+name: Source of audited Harvester v1.0.0 - attach to existing release
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'source/**'
+      - '.github/workflows/attach-v1-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: harvester-source-v1-asset
+  cancel-in-progress: false
+jobs:
+  source-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Strict allowlist audit and source-only ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from zipfile import ZipFile, ZIP_DEFLATED
+          import re
+          expected = {
+          "source/README.md",
+          "source/installer.py",
+          "source/requirements-build.txt",
+          "source/requirements.txt",
+          "source/runtime/__init__.py",
+          "source/runtime/dual_renderer.py",
+          "source/runtime/fst_codec.py",
+          "source/runtime/fst_subtitles.py",
+          "source/runtime/fst_subtitles_fast.py",
+          "source/runtime/fst_subtitles_palette_white_10px.py",
+          "source/runtime/harvester_iso.py",
+          "source/runtime/render_jobs.py",
+          "source/src/windows/DeutschPatcher.cs",
+          "source/src/windows/Harvester_GOG_Deutsch_installieren.cmd",
+          "source/src/windows/Harvester_GOG_Deutsch_installieren.ps1",
+          "source/src/windows/VideoInstaller.cs",
+          "source/src/windows/VideoReleaseBridge.cs",
+          "source/tools/developer/bitmap_delta_compact.py",
+          "source/tools/developer/build_release_private.ps1",
+          "source/tools/developer/delta_core_proof.py",
+          "source/tools/developer/delta_core_shadow_installer.py",
+          "source/tools/developer/delta_embedded_bundle.py",
+          "source/tools/developer/delta_onepass_installer.py",
+          "source/tools/developer/delta_onepass_wizard.py",
+          "source/tools/developer/delta_video_addon.py",
+          "source/tools/developer/originalvergleich_gog.py",
+          "source/tools/developer/release_package_audit.py",
+          "source/tools/developer/test_bitmap_delta_compact.py",
+          "source/tools/developer/test_delta_core_proof.py",
+          "source/tools/developer/test_delta_core_shadow_installer.py",
+          "source/tools/developer/test_delta_embedded_bundle.py",
+          "source/tools/developer/test_delta_onepass_frozen.py",
+          "source/tools/developer/test_delta_onepass_installer.py",
+          "source/tools/developer/test_delta_onepass_wizard.py",
+          "source/tools/developer/test_delta_video_addon.py",
+          "source/tools/developer/test_originalvergleich_gog.py",
+          "source/tools/developer/test_release_package_audit.py",
+          "source/tools/developer/test_release_player_surface.py",
+          "source/tools/developer/test_unified_delta_bundle.py",
+          "source/tools/developer/test_variable_delta_poc.py",
+          "source/tools/developer/unified_delta_bundle.py",
+          "source/tools/developer/variable_delta_poc.py",
+          }
+          actual = {x.as_posix() for x in Path("source").rglob("*") if x.is_file() or x.is_symlink()}
+          if actual != expected:
+              raise SystemExit("STOP: source directory has extra/missing files: " + repr(sorted(actual ^ expected)))
+          if len(expected) != 42:
+              raise SystemExit("STOP: unexpected source inventory count")
+          forbidden_suffixes = {".exe",".dll",".zip",".iso",".dat",".bin",".srt",".mp4",".xml",".fst",".json",".hvp"}
+          size = 0
+          for name in sorted(expected):
+              item = Path(name)
+              if item.is_symlink() or not item.is_file():
+                  raise SystemExit("STOP: symlink or missing file: " + name)
+              if item.suffix.lower() in forbidden_suffixes:
+                  raise SystemExit("STOP: asset not permitted in source archive: " + name)
+              if item.stat().st_size > 200000:
+                  raise SystemExit("STOP: unexpected oversized source: " + name)
+              content = item.read_bytes()
+              try:
+                  txt = content.decode("utf-8")
+              except UnicodeError:
+                  raise SystemExit("STOP: source file not UTF-8: " + name)
+              if re.search(r"ghp_[A-Za-z0-9]{20}|github_pat_[A-Za-z0-9_]{20}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY|hesssoeren", txt, re.I):
+                  raise SystemExit("STOP: possible private data in source: " + name)
+              size += len(content)
+          if size > 1500000:
+              raise SystemExit("STOP: source archive too large")
+          archive_name = "Harvester_GOG_Deutsch_Source_v1.0.0.zip"
+          with ZipFile(archive_name,"w",ZIP_DEFLATED,compresslevel=9) as archive:
+              for name in sorted(expected):
+                  archive.write(name,arcname="Harvester_GOG_Deutsch_Source_v1.0.0/" + name)
+          h=sha256(Path(archive_name).read_bytes()).hexdigest()
+          print("PASS: exactly",len(expected),"audited text-only source files")
+          print("Source ZIP SHA-256:",h)
+          print("Private delta and game data NOT included.")
+          PY
+      - name: Attach source ZIP to EXISTING v1.0.0 release (do not modify installer or tag)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json tagName --jq '.tagName' | grep -Fx v1.0.0
+          gh release upload v1.0.0 Harvester_GOG_Deutsch_Source_v1.0.0.zip --repo "$GITHUB_REPOSITORY" --clobber
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx Harvester_GOG_Deutsch_Source_v1.0.0.zip
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx Harvester_GOG_Deutsch_v1.0.0.zip
+          echo "PASS: source ZIP attached; original installer ZIP remains."
+# Source asset has exactly 42 text files. The v1.0.0 Git tag is never moved.
