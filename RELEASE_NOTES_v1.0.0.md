@@ -40,3 +40,10 @@ SHA-256 von `Harvester_GOG_Deutsch_Setup.exe` aus dem erfolgreich getesteten Git
 `8c04747dacf74ca7ec1a15fd7a96fc21366f6c74895e743e2f29e467b4b428e9`
 
 Der Wert gilt für exakt diese EXE-Datei, nicht für das gesamte ZIP. Die `SHA256SUMS.txt` im Download enthält die zugehörige Prüfsumme.
+
+## Quellcode
+
+Die Python- und C#-Quellen des tatsächlich getesteten Installers samt Core-/Video-/SHA-256-Prüfungen und Tests liegen im [öffentlichen Source-Verzeichnis](source/README.md). Das zusätzliche Release-Asset `Harvester_GOG_Deutsch_Source_v1.0.0.zip` enthält ausschließlich diese Quellen.
+
+**Abgrenzung:** Der Quellcode ist einsehbar, aber ohne separat nicht veröffentlichte Patch- und Übersetzungsdaten nicht vollständig reproduzierbar. Keine Original-GOG-Medien oder privaten Delta-Binärdaten im Source-Paket. Der bestehende `v1.0.0`-Tag und das getestete Installer-ZIP bleiben unverändert.
+
