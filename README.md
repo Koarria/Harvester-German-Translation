@@ -1,1 +1,59 @@
-# Harvester-German-Translation
+# Harvester – Deutsche Fanübersetzung (GOG)
+
+Inoffizielle, kostenlose deutsche Fanübersetzung für **Harvester (1996)**.
+
+Diese Fanübersetzung bietet deutsche Spieltexte und deutsche Untertitel für die **66 Videosequenzen** des Spiels. Die englische Originalvertonung bleibt erhalten.
+
+## Download
+
+Die aktuelle Version gibt es unter **[Releases](../../releases)**.
+
+**Download:** `Harvester_GOG_Deutsch_v1.0.0.zip` aus dem neuesten Release herunterladen und entpacken.
+
+Das ZIP enthält nur:
+- `Harvester_GOG_Deutsch_Setup.exe` – eigenständiger Windows-Installer
+- `LIES_MICH.txt` – deutsche Installations- und Startanleitung
+- `SHA256SUMS.txt` – SHA-256-Prüfsumme der Setup-EXE
+
+Die Installation erfordert **keine separate Python-Installation und kein Delta-ZIP**.
+
+## Voraussetzungen
+
+- Eine eigene, unterstützte englische **GOG-Version von Harvester**
+- **Windows**
+- Genügend freier Speicherplatz für eine separate deutsche Spielkopie
+
+Andere Fassungen (z. B. Steam oder CD-Versionen) werden nicht pauschal unterstützt.
+
+## Installation
+
+1. `Harvester_GOG_Deutsch_Setup.exe` starten.
+2. Den Ordner der englischen GOG-Installation und den gewünschten übergeordneten Zielordner auswählen.
+3. Auf **„Deutsch installieren“** klicken und die Sicherheitsabfrage mit `JA` bestätigen.
+4. Der Installer prüft die Spieldateien automatisch per SHA-256. Erst danach erstellt er im gewählten Ziel den neuen Ordner `Harvester GOG Deutsch`.
+
+Die englische Installation wird nicht überschrieben. Bereits vorhandene deutsche Zielordner werden ebenfalls nicht überschrieben.
+
+## Spiel starten
+
+Im neu erstellten Ordner `Harvester GOG Deutsch` stehen drei Startdateien bereit:
+
+| Startdatei | Wirkung |
+| --- | --- |
+| `Harvester_Deutsch_ohne_Videountertitel.cmd` | Deutsche Spieltexte, ohne Videountertitel |
+| `Harvester_Deutsch_mit_10px_Videountertiteln.cmd` | Deutsche Spieltexte und 10-px-Videountertitel |
+| `Harvester_Deutsch_mit_11px_Videountertiteln.cmd` | Deutsche Spieltexte und 11-px-Videountertitel |
+
+Die englische Sprachausgabe bleibt erhalten. Die Videountertitel geben gesprochene Dialoge wieder. Einige Beschriftungen und Grafiken bleiben englisch.
+
+## Getesteter Umfang
+
+Der Installer wurde mit einer englischen GOG-Installation unter Windows getestet. Bestätigt wurden die erfolgreiche Erstellung der deutschen Spielkopie, deutsche Spieltexte, das Laden bestehender Spielstände und die Anzeige deutscher Videountertitel.
+
+Die automatische Installationsprüfung umfasst 66 Videoquellen, 132 Untertitelvarianten (10/11 px), sechs Video-CD-Abbilder und drei Startmöglichkeiten. Nicht jede einzelne Videosequenz wurde im letzten Test erneut durchgespielt.
+
+## Hinweis
+
+Dies ist ein **inoffizielles, nichtkommerzielles Fanprojekt** und steht in keiner Verbindung zu den Entwicklern, Publishern oder GOG. Die Rechte am Originalspiel liegen bei ihren jeweiligen Rechteinhabern. Es wird keine vollständige Original-GOG-Installation mitgeliefert.
+
+Die Fanübersetzung ersetzt nicht den Erwerb des Spiels.
