@@ -1,0 +1,5 @@
+1
+00:00:00,220 --> 00:00:03,440
+Keiner von uns kann einem schönen
+Stück Fleisch widerstehen.
+

@@ -1,0 +1,5 @@
+1
+00:00:01,200 --> 00:00:03,680
+Du ahnst ja nicht, wie recht du
+hast.
+
