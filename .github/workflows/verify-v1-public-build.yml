@@ -10,6 +10,7 @@ on:
       - 'release/LIES_MICH.txt'
       - 'build/**'
       - '.github/workflows/verify-v1-public-build.yml'
+      - '.gitattributes'
   workflow_dispatch:
 concurrency:
   group: harvester-public-rebuild-${{ github.ref }}
