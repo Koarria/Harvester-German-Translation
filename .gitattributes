@@ -1,0 +1,7 @@
+# Keep all released source and translation data EXACTLY as tested, even on Windows.
+# In particular the original Delta contains the precise Regeln.xml byte sequence.
+# Git's Windows core.autocrlf must never rewrite SRT, XML, EXE or ZIP bytes.
+/resources/** -text
+/source/** -text
+/release/LIES_MICH.txt -text
+/build/RESOURCE_LOCKS_v1.0.0.json -text
