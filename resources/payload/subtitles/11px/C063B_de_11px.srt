@@ -1,0 +1,5 @@
+1
+00:00:00,200 --> 00:00:03,620
+Steve ist ein toller Name. Mein Hund
+heißt auch Steve.
+

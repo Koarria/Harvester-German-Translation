@@ -1,0 +1,9 @@
+1
+00:00:00,120 --> 00:00:02,447
+Eine neue Tierlieferung ist
+angekommen. Zeit, mit dem Zerlegen
+
+2
+00:00:02,447 --> 00:00:02,860
+anzufangen.
+

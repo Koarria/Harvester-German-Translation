@@ -1,0 +1,5 @@
+1
+00:00:00,900 --> 00:00:02,620
+Das habe ich gestern Abend gemacht.
+Was meinst du?
+
