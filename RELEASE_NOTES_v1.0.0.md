@@ -41,9 +41,14 @@ SHA-256 von `Harvester_GOG_Deutsch_Setup.exe` aus dem erfolgreich getesteten Git
 
 Der Wert gilt für exakt diese EXE-Datei, nicht für das gesamte ZIP. Die `SHA256SUMS.txt` im Download enthält die zugehörige Prüfsumme.
 
-## Quellcode
+## Quellcode und Übersetzungsressourcen
 
-Die Python- und C#-Quellen des tatsächlich getesteten Installers samt Core-/Video-/SHA-256-Prüfungen und Tests liegen im [öffentlichen Source-Verzeichnis](source/README.md). Das zusätzliche Release-Asset `Harvester_GOG_Deutsch_Source_v1.0.0.zip` enthält ausschließlich diese Quellen.
+Der Quellcode des getesteten Installers ist in [source/](source/README.md) einsehbar. **Das überprüfte Original-Delta-ZIP und die vollständigen deutschen SRT-/XML-Ressourcen** sind jetzt separat unter [resources/](resources/README.md) verfügbar.
 
-**Abgrenzung:** Der Quellcode ist einsehbar, aber ohne separat nicht veröffentlichte Patch- und Übersetzungsdaten nicht vollständig reproduzierbar. Keine Original-GOG-Medien oder privaten Delta-Binärdaten im Source-Paket. Der bestehende `v1.0.0`-Tag und das getestete Installer-ZIP bleiben unverändert.
+Im Release werden ergänzend zwei ZIP-Dateien bereitgestellt:
+- `Harvester_GOG_Deutsch_Source_v1.0.0.zip` – Python-/C#-Programmquelltext und Tests
+- `Harvester_GOG_Deutsch_Resources_v1.0.0.zip` – Delta, deutsche Untertitel, Manifeste, eigener nativer C#-Patcher
 
+Mit dem [Windows-Bauskript](build/Harvester_aus_Quellcode_bauen.cmd) lässt sich der Installer aus diesen öffentlichen Ressourcen nachbauen. Für den Nachbau wird Python 3.13 benötigt; der SHA-256 einer neu gebauten EXE muss nicht dem ursprünglich getesteten Binary entsprechen.
+
+Das **bereits getestete Installer-ZIP bleibt unverändert**. Weder vollständige GOG-Spielmedien noch originale FST-Filme oder Spielstände sind in den Quellcode-/Ressourcenpaketen enthalten. Das Übersetzungs-Delta enthält urheberrechtlich möglicherweise geschützte Bearbeitungen; eine Freigabe durch Rechteinhaber wird nicht behauptet.
