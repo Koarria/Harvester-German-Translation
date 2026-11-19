@@ -1,0 +1,8 @@
+1
+00:00:00,460 --> 00:00:01,540
+Ja, aber sieh dir die Röhre an.
+
+2
+00:00:02,340 --> 00:00:03,440
+Wo ist die Fernbedienung?
+
