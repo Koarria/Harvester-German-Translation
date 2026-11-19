@@ -1,0 +1,4 @@
+1
+00:00:00,380 --> 00:00:03,580
+Die Wespe ist eine wahre Augenweide.
+
