@@ -10,7 +10,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: harvester-source-v1-asset
+  group: harvester-v1-release-asset-updates
   cancel-in-progress: false
 jobs:
   source-archive:
@@ -47,6 +47,7 @@ jobs:
           "source/src/windows/VideoInstaller.cs",
           "source/src/windows/VideoReleaseBridge.cs",
           "source/tools/developer/bitmap_delta_compact.py",
+          "source/tools/developer/bitmap_delta_poc.py",
           "source/tools/developer/build_release_private.ps1",
           "source/tools/developer/delta_core_proof.py",
           "source/tools/developer/delta_core_shadow_installer.py",
@@ -57,6 +58,7 @@ jobs:
           "source/tools/developer/originalvergleich_gog.py",
           "source/tools/developer/release_package_audit.py",
           "source/tools/developer/test_bitmap_delta_compact.py",
+          "source/tools/developer/test_bitmap_delta_poc.py",
           "source/tools/developer/test_delta_core_proof.py",
           "source/tools/developer/test_delta_core_shadow_installer.py",
           "source/tools/developer/test_delta_embedded_bundle.py",
@@ -75,7 +77,7 @@ jobs:
           actual = {x.as_posix() for x in Path("source").rglob("*") if x.is_file() or x.is_symlink()}
           if actual != expected:
               raise SystemExit("STOP: source directory has extra/missing files: " + repr(sorted(actual ^ expected)))
-          if len(expected) != 42:
+          if len(expected) != 44:
               raise SystemExit("STOP: unexpected source inventory count")
           forbidden_suffixes = {".exe",".dll",".zip",".iso",".dat",".bin",".srt",".mp4",".xml",".fst",".json",".hvp"}
           size = 0
@@ -142,4 +144,4 @@ jobs:
           gh release edit v1.0.0 --repo "$GITHUB_REPOSITORY" --notes-file "$note_file"
           gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json body --jq '.body' | grep -F '## Quellcode (v1.0.0)'
           echo "PASS: existing release notes now link verified public source."
-# Source asset has exactly 42 text files. The v1.0.0 Git tag is never moved.
+# Source asset has exactly 44 text files. The v1.0.0 Git tag is never moved.
