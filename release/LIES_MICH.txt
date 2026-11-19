@@ -1,0 +1,79 @@
+HARVESTER – DEUTSCHE FANÜBERSETZUNG
+================================
+
+Inoffizielle, kostenlose deutsche Fanübersetzung für Harvester (1996),
+erstellt für die unterstützte englische GOG-Version unter Windows.
+
+WAS IST ENTHALTEN?
+------------------
+- Deutsche Spieltexte und Menüs sowie weitere übersetzte Spielinhalte.
+- Deutsche Untertitel für 66 Videosequenzen, wahlweise in 10 oder 11 Pixel.
+- Drei Startmöglichkeiten: ohne Videountertitel, mit 10 px oder mit 11 px.
+- Ein eigenständiger Windows-Installer. Eine Python-Installation ist nicht nötig.
+
+VORAUSSETZUNGEN
+---------------
+- Eine eigene, unterstützte englische GOG-Installation von Harvester.
+- Windows und ausreichend freier Speicherplatz für eine getrennte Spielkopie.
+- Die EXE und die GOG-Spieldateien müssen lokal zugänglich sein.
+
+INSTALLATION
+------------
+1. Harvester_GOG_Deutsch_Setup.exe starten.
+2. Den Ordner der englischen GOG-Installation auswählen. Wird er automatisch
+   gefunden, den angezeigten Pfad überprüfen.
+3. Einen bereits existierenden übergeordneten Zielordner auswählen.
+   Darin erstellt das Programm neu den Ordner „Harvester GOG Deutsch“.
+4. Auf „Deutsch installieren“ klicken und die Installation mit der
+   genauen Eingabe JA bestätigen.
+5. Der Installer prüft jetzt automatisch die Originaldateien, die
+   Übersetzungsdaten und den freien Speicherplatz. Erst bei vollständig
+   erfolgreicher SHA-256-Prüfung beginnt die Installation.
+6. Nach erfolgreicher Installation den neuen Spielordner öffnen.
+
+Optional: Unter „Erweiterte Optionen“ steht „Nur prüfen (SHA-256)“ für
+eine reine Prüfung ohne Installation zur Verfügung. Dieser Schritt
+ist NICHT erforderlich, um Deutsch zu installieren.
+
+WICHTIG: Ein bereits vorhandener Ordner „Harvester GOG Deutsch“ wird nicht
+überschrieben. Für eine zweite Installation einen anderen Ziel-Elternordner
+verwenden. Das englische Original und vorhandene Spielstände sollen unverändert
+bleiben. Eine inkompatible GOG-Ausgabe wird durch die Integritätsprüfungen
+abgewiesen, nicht automatisch konvertiert.
+
+SPIEL STARTEN
+-------------
+Im Ordner „Harvester GOG Deutsch“ liegen drei Dateien:
+
+Harvester_Deutsch_ohne_Videountertitel.cmd
+  Deutsche Spieltexte, englische Tonspur, keine deutschen Videountertitel.
+
+Harvester_Deutsch_mit_10px_Videountertiteln.cmd
+  Deutsche Spieltexte und deutsche Videountertitel in 10 Pixel.
+
+Harvester_Deutsch_mit_11px_Videountertiteln.cmd
+  Deutsche Spieltexte und deutsche Videountertitel in 11 Pixel.
+
+Vor dem Wechsel zwischen den Startmöglichkeiten das Spiel vollständig
+beenden. Bestehende Spielstände konnten in der getesteten GOG-Installation
+weiter geladen werden.
+
+HINWEISE
+--------
+- Die gesprochene englische Originalvertonung bleibt erhalten.
+- Die Videountertitel geben die gesprochenen Worte wieder. Nicht sämtliche
+  englischen Grafiken und Beschriftungen sind Teil der Übersetzung.
+- Bei einer abgebrochenen Installation den unvollständigen Zielordner nicht
+  starten. Fehlermeldung notieren; keinen bestehenden Ordner überschreiben.
+- Der Installer prüft unveränderliche Dateiinhalte per SHA-256. Der Gesamt-
+  SHA eines erzeugten XML-Installationsnachweises ist absichtlich nicht über
+  verschiedene Quell- und Zielpfade hinweg fest vorgegeben.
+- Der technische Installationsbericht wird getrennt im Dokumenteordner
+  „Harvester_Deutsch_Installationsberichte“ gespeichert.
+
+HAFTUNG UND HINWEIS ZUM FANPROJEKT
+----------------------------------
+Inoffizielles, nichtkommerzielles Fanprojekt. Keine Verbindung zum Entwickler,
+Publisher oder zu GOG. Die Originalspiel-Dateien und die Rechte am Spiel bleiben
+bei den jeweiligen Rechteinhabern. Der Patcher ersetzt keinen Erwerb des Spiels.
+Verwendung auf eigene Verantwortung; keine Gewährleistung.
