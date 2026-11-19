@@ -17,6 +17,12 @@ Das ZIP enthält nur:
 
 Die Installation erfordert **keine separate Python-Installation und kein Delta-ZIP**.
 
+## Quellcode
+
+Der **[öffentlich einsehbare Quellcode des v1.0.0-Installers](source/README.md)** ist unter [source/](source/) verfügbar. Er umfasst Python-Installer, die automatischen SHA-256-Prüfungen, den FST-/Videountertitel-Renderer, die C#-Patcherquellen sowie technische Tests. Zusätzlich soll die GitHub-Release-Seite ein separates `Harvester_GOG_Deutsch_Source_v1.0.0.zip` erhalten.
+
+Die Quellcodedateien wurden mit dem getesteten Windows-Buildstand abgeglichen. **Nicht enthalten** sind das private Delta-ZIP, fertige Spielressourcen und die vollständigen Übersetzungsdaten. Das Source-Verzeichnis allein ermöglicht deshalb keinen vollständigen identischen Neu-Build; Details stehen in der [Source-README](source/README.md).
+
 ## Voraussetzungen
 
 - Eine eigene, unterstützte englische **GOG-Version von Harvester**
