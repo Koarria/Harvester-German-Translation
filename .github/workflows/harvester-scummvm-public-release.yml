@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - 'release/scummvm-converter-v1-2026-11-20'
-      - main
     paths:
       - 'source/tools/developer/scummvm_converter.py'
       - 'source/tools/developer/scummvm_converter_gui.py'
