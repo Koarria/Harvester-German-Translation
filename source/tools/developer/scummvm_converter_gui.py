@@ -35,7 +35,7 @@ def launch() -> None:
             self.english = tk.StringVar()
             self.german = tk.StringVar()
             self.target_parent = tk.StringVar()
-            self.mode = tk.StringVar(value="10px")
+            self.mode = tk.StringVar(value="11px")
             self.status = tk.StringVar(value="Bitte die drei Ordner auswählen.")
             base = ttk.Frame(self.root, padding=16)
             base.pack(fill="both", expand=True)
