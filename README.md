@@ -1,4 +1,4 @@
-# Harvester – Deutsche Fanübersetzung (GOG)
+# Harvester – Deutsche Fanübersetzung (GOG und ScummVM)
 
 Inoffizielle, kostenlose deutsche Fanübersetzung für **Harvester (1996)**.
 
