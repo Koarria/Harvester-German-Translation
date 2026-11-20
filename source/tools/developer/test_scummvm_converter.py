@@ -354,15 +354,41 @@ class ScummvmConverterTests(unittest.TestCase):
             with self.assertRaisesRegex(converter.ConversionError,"Videountertitel-CD weicht"):
                 converter.verify_video_mode(self.english,self.german,"11px",discs)
 
-    def test_wrong_original_folder_in_install_proof_rejected(self):
+    def test_relocated_original_and_german_folders_accepted_with_valid_hashes(self):
         root,manifest,discs,qa,proof=self.make_locally_rendered_video_fixture()
         tree=ET.parse(proof)
-        tree.getroot().set("original",str(self.root/"Different Original GOG"))
+        tree.getroot().set("original",str(self.root/"Former English GOG"))
+        tree.getroot().set("ziel",str(self.root/"Former German GOG"))
         tree.write(proof,encoding="utf-8",xml_declaration=True)
         with (mock.patch.object(converter,"ROOT",root),
               mock.patch.object(converter,"VIDEO_MANIFEST_SHA256",
                                 hashlib.sha256(manifest.read_bytes()).hexdigest())):
-            with self.assertRaisesRegex(converter.ConversionError,"anderen GOG-Quell"):
+            self.assertEqual(
+                converter.verify_video_mode(self.english,self.german,"11px",discs),98)
+
+    def test_relocated_folder_still_rejects_modified_iso(self):
+        root,manifest,discs,qa,proof=self.make_locally_rendered_video_fixture()
+        tree=ET.parse(proof)
+        tree.getroot().set("original",str(self.root/"Former English GOG"))
+        tree.getroot().set("ziel",str(self.root/"Former German GOG"))
+        tree.write(proof,encoding="utf-8",xml_declaration=True)
+        disc=discs[0].iso
+        disc.write_bytes(b"Z"+disc.read_bytes()[1:])
+        with (mock.patch.object(converter,"ROOT",root),
+              mock.patch.object(converter,"VIDEO_MANIFEST_SHA256",
+                                hashlib.sha256(manifest.read_bytes()).hexdigest())):
+            with self.assertRaisesRegex(converter.ConversionError,"Videountertitel-CD weicht"):
+                converter.verify_video_mode(self.english,self.german,"11px",discs)
+
+    def test_missing_original_path_metadata_still_rejected(self):
+        root,manifest,discs,qa,proof=self.make_locally_rendered_video_fixture()
+        tree=ET.parse(proof)
+        tree.getroot().attrib.pop("original")
+        tree.write(proof,encoding="utf-8",xml_declaration=True)
+        with (mock.patch.object(converter,"ROOT",root),
+              mock.patch.object(converter,"VIDEO_MANIFEST_SHA256",
+                                hashlib.sha256(manifest.read_bytes()).hexdigest())):
+            with self.assertRaisesRegex(converter.ConversionError,"keine GOG-Quell"):
                 converter.verify_video_mode(self.english,self.german,"11px",discs)
 
     def test_missing_rendered_movie_rejected_even_with_modified_proof(self):
