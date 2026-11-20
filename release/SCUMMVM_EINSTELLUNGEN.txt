@@ -1,0 +1,57 @@
+HARVESTER DEUTSCH – EMPFOHLENE SCUMMVM-EINSTELLUNGEN
+ScummVM 2026.4.0 (Windows) · inoffizielle Fanübersetzung
+
+ScummVM im Hauptfenster öffnen, Harvester auswählen:
+„Spieloptionen“ (Game Options) > „Grafik“ (Graphics).
+„Globale Grafikeinstellungen überschreiben“ für dieses Spiel aktivieren.
+
+Empfehlung für einen guten Start:
+  Grafikmodus:          OpenGL
+  Streckmodus:          An Fenster anpassen (4:3), alternativ An Fenster anpassen
+                       mit erhaltenem Seitenverhältnis
+  Grafik filtern:       AUS – schärfere Pixel und deutsche Untertitel
+  Vollbild:             EIN, wenn gewünscht; 4:3 beibehalten
+  Seitenverhältnis:     Keine erzwungene 16:9-Streckung. „Aspect ratio
+                       correction“ zunächst auf Standard belassen.
+  Shader:               Keine erforderlich.
+
+Alternative: Grafikfilterung EIN, wenn die Filmsequenzen oder Schrift
+weicher wirken sollen. Es ist Geschmackssache, kein Qualitätsfehler.
+
+Harvester benutzt 320x200- und 640x480-Grafikmodi; bei 320x200 kann
+die ScummVM-Seitenverhältniskorrektur nützlich sein. Bei 640x480
+ist das Bild schon 4:3. Den 4:3-Streckmodus verwenden, statt das
+Bild auf einem Breitbildmonitor zu 16:9 zu verzerren.
+
+Ton: Im Reiter „Audio“ Musikgerät zunächst auf „Standard“ belassen.
+Die englische Originalvertonung bleibt unverändert.
+Bei Problemen mit zu leiser Sprache die Lautstärken für Sprache,
+Musik und Effekte einzeln in ScummVM kontrollieren.
+
+Untertitel: Die deutschen Videountertitel sind FEST in die Videos
+gerendert. Der normale ScummVM-Untertitel-Schalter und die Texttempo-
+Option ändern diese Film-Untertitel nicht. Im Konverter vor dem
+Erstellen einer Datenkopie „11px“, „10px“ oder „ohne“ auswählen.
+Empfehlung: 11px für bessere Lesbarkeit auf modernen Monitoren.
+
+Spielstände: Bereits vorhandene ScummVM-Saves wurden mit der deutschen
+Variante erfolgreich geladen. DOSBox-/GOG-Saves sind dagegen nicht
+automatisch mit ScummVM kompatibel oder migriert.
+
+Nützliche Tasten (ScummVM):
+  Alt + Enter       Vollbild an/aus
+  Strg + F5         ScummVM-Hauptmenü im Spiel
+  Strg + Alt + f    Grafikfilterung umschalten
+  Strg + Alt + s    Streckmodus wechseln
+
+Alle Empfehlungen sind OPTIONAL – nicht als zwingende Engine-Einstellungen
+zu verstehen. Die Darstellungswirkung hängt von Monitor und persönlichem
+Geschmack ab. Nur die Einstellungen des Harvester-Spieleintrags ändern,
+nicht die globalen Einstellungen für alle ScummVM-Spiele.
+
+Offizielle Quellen (ScummVM 2026.4.0):
+https://docs.scummvm.org/en/v2026.4.0/use_scummvm/how_to_settings.html
+https://docs.scummvm.org/en/v2026.4.0/settings/graphics.html
+https://docs.scummvm.org/en/v2026.4.0/advanced_topics/understand_graphics.html
+https://docs.scummvm.org/en/v2026.4.0/settings/audio.html
+https://docs.scummvm.org/en/v2026.4.0/use_scummvm/keyboard_shortcuts.html
