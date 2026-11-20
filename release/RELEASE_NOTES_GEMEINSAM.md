@@ -34,11 +34,17 @@ Die ScummVM-Konvertierung nutzt die bestehenden Spielressourcen, verändert die 
 
 Empfohlene ScummVM-Einstellungen: **OpenGL**, unverzerrtes **4:3**, Grafikfilterung zunächst **aus**. [Ausführliche Einstellungen](https://github.com/Koarria/Harvester-German-Translation/blob/main/docs/SCUMMVM_EINSTELLUNGEN.md).
 
-## Weitere Dateien und Quellcode
+## Vollständiger Quellcode für Nexus Mods und technische Prüfung
 
-Die ergänzenden Dateien `Harvester_GOG_Deutsch_Source_v1.0.0.zip` und `Harvester_GOG_Deutsch_Resources_v1.0.0.zip` richten sich an technisch Interessierte; normale Spieler benötigen sie nicht.
+**Für die Prüfung beider Installer den aktuellen, vollständigen [Projektstand v1.0.1 als ZIP](https://github.com/Koarria/Harvester-German-Translation/archive/refs/tags/v1.0.1.zip) verwenden.** Er enthält die **47 Python-/C#-Quell- und Testdateien**, Übersetzungsressourcen, Delta, Untertiteldateien und Windows-Bauskripte.
 
-Der frei einsehbare [Quellcode auf GitHub](https://github.com/Koarria/Harvester-German-Translation/tree/main/source) enthält auch die **ScummVM-Konverter-Korrekturen und Regressionstests**. Das gesonderte Source-ZIP v1.0.0 dokumentiert den ursprünglichen GOG-Release-Stand. Im gemeinsamen Release steht ausschließlich der aktuelle **ScummVM-Konverter v1.0.1** zum Download bereit.
+- [Quellcode am unveränderlichen Git-Tag v1.0.1](https://github.com/Koarria/Harvester-German-Translation/tree/v1.0.1/source)
+- [Deutsche Ressourcen am Git-Tag v1.0.1](https://github.com/Koarria/Harvester-German-Translation/tree/v1.0.1/resources)
+- [Technische Quellcodeprüfung, Nachbau und SHA-256-Werte für Nexus](https://github.com/Koarria/Harvester-German-Translation/blob/main/docs/QUELLCODE_PRUEFUNG_NEXUS.md)
+
+**Achtung bei der Source-Auswahl:** Das zusätzlich angebotene `Harvester_GOG_Deutsch_Source_v1.0.0.zip` ist **nur der historische Quellstand** und enthält nicht die aktuelle ScummVM-v1.0.1-Korrektur. Auch die von GitHub automatisch unter **`Source code (zip)`** und **`Source code (tar.gz)`** angebotenen Archive **dieses gemeinsamen Releases** gehören zum früh angelegten Git-Tag `v1.0.0` und enthalten nicht den später veröffentlichten Quellcode. Für die externe Prüfung daher den **obigen v1.0.1-Link** benutzen.
+
+Das **GOG-v1.0.0-Setup** lässt sich über das öffentliche Windows-Bauskript erneut erstellen, verwendet dabei jedoch eine kompilierte eigene C#-Hilfsdatei, deren Quellcode vorliegt; die bitidentische Reproduktion aller EXEs wurde nicht nachgewiesen. Der **ScummVM-v1.0.1-Konverter** ist über den öffentlichen Windows-CI-Workflow mit **23 Regressionstests** geprüft. `Harvester_GOG_Deutsch_Resources_v1.0.0.zip` enthält die veröffentlichten Übersetzungsressourcen; beide Spieler-Installer und ihre Prüfsummen bleiben unverändert.
 
 ## Rechtlicher Hinweis
 
