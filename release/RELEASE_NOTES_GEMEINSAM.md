@@ -36,7 +36,7 @@ Empfohlene ScummVM-Einstellungen: **OpenGL**, unverzerrtes **4:3**, Grafikfilter
 
 ## Vollständiger Quellcode für Nexus Mods und technische Prüfung
 
-**Für die Prüfung beider Installer den aktuellen, vollständigen [Projektstand v1.0.1 als ZIP](https://github.com/Koarria/Harvester-German-Translation/archive/refs/tags/v1.0.1.zip) verwenden.** Er enthält die **47 Python-/C#-Quell- und Testdateien**, Übersetzungsressourcen, Delta, Untertiteldateien und Windows-Bauskripte.
+**Für die Prüfung beider Installer den aktuellen, vollständigen [Projektstand v1.0.1 als ZIP](https://github.com/Koarria/Harvester-German-Translation/archive/refs/tags/v1.0.1.zip) verwenden.** Er enthält **47 Dateien unter `source/`** (Programmquellen, Tests und Dokumentation), Übersetzungsressourcen, Delta, Untertiteldateien und Windows-Bauskripte.
 
 - [Quellcode am unveränderlichen Git-Tag v1.0.1](https://github.com/Koarria/Harvester-German-Translation/tree/v1.0.1/source)
 - [Deutsche Ressourcen am Git-Tag v1.0.1](https://github.com/Koarria/Harvester-German-Translation/tree/v1.0.1/resources)
