@@ -1,0 +1,204 @@
+name: Harvester ScummVM Deutsch v1.0.0 - Windows release build
+on:
+  push:
+    branches:
+      - 'release/scummvm-converter-v1-2026-11-20'
+      - main
+    paths:
+      - 'source/tools/developer/scummvm_converter.py'
+      - 'source/tools/developer/scummvm_converter_gui.py'
+      - 'source/tools/developer/test_scummvm_converter.py'
+      - 'source/runtime/harvester_iso.py'
+      - 'source/requirements-build.txt'
+      - 'resources/payload/Regeln.xml'
+      - 'resources/payload/VideoManifest.xml'
+      - 'release/SCUMMVM_LIES_MICH.txt'
+      - 'release/SCUMMVM_EINSTELLUNGEN.txt'
+      - '.github/workflows/harvester-scummvm-public-release.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: harvester-v1-release-asset-updates
+  cancel-in-progress: false
+jobs:
+  windows-scummvm-release:
+    runs-on: windows-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout the public, auditable source tree
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Python 3.13 for build runner only
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify original public translation XML hashes
+        shell: pwsh
+        run: |
+          $expect = @{
+            'resources/payload/Regeln.xml' = '7c72b55366546080544d603fbe4f24aa128d80c043a56cad36db4db40327266b'
+            'resources/payload/VideoManifest.xml' = 'f56a5708018820bcbc6af0c6fb71f3f775a39b317bd1626eb898aa04aaf7162d'
+          }
+          foreach ($item in $expect.GetEnumerator()) {
+            $got=(Get-FileHash -Algorithm SHA256 -LiteralPath $item.Key).Hash.ToLowerInvariant()
+            if ($got -cne $item.Value) { throw "STOP: altered original translation XML $($item.Key)" }
+          }
+          Write-Host 'PASS: Exact original tested translation XML inputs.'
+      - name: Audit release labels, source syntax and required safety checks
+        shell: pwsh
+        run: |
+          @'
+          from pathlib import Path
+          import ast,re
+          src=Path('source/tools/developer')
+          gui=(src/'scummvm_converter_gui.py').read_text('utf-8')
+          core=(src/'scummvm_converter.py').read_text('utf-8')
+          for file in ('scummvm_converter.py','scummvm_converter_gui.py','test_scummvm_converter.py'):
+              ast.parse((src/file).read_text('utf-8'), filename=file)
+          forbidden=(r'Testversion',r'Versuchsfassung',r'Experimenteller Konverter',r'INGAME-TEST NOCH OFFEN',r'SCUMMVM_DEUTSCH_TEST_HINWEISE')
+          if any(re.search(p,core+'\n'+gui,re.I) for p in forbidden):
+              raise SystemExit('STOP: unwanted testing labels in public converter/GUI')
+          for required in ('verified_local_render_hashes','ALTER_FIX2_STARTER.txt','LOKALE_RENDER_QA.json','VIDEO_MANIFEST_SHA256','ISO_FILE_COUNTS'):
+              if required not in core: raise SystemExit('STOP: safety preflight missing: '+required)
+          if 'SCUMMVM_DEUTSCH_HINWEISE.txt' not in core:
+              raise SystemExit('STOP: final generated player instructions missing')
+          for name in ('release/SCUMMVM_LIES_MICH.txt','release/SCUMMVM_EINSTELLUNGEN.txt'):
+              content=Path(name).read_text('utf-8')
+              if re.search(r'Testversion|Versuchsfassung|\bTEST\b',content,re.I):
+                  raise SystemExit('STOP: testing wording in public release document '+name)
+          print('PASS: safe release labels, public source syntax and pinned security logic')
+          '@ | python -
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Run all 20 actual converter regression tests
+        shell: pwsh
+        env:
+          PYTHONPATH: ${{ github.workspace }}\source
+        run: |
+          python -m unittest discover -s source/tools/developer -p test_scummvm_converter.py -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Write-Host 'PASS: fail-closed ISO, double XML starter, video SHA, save safety tests'
+      - name: Install pinned public Python build dependencies
+        shell: pwsh
+        run: |
+          python -m pip install -r source/requirements-build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build standalone Windows German ScummVM converter
+        shell: pwsh
+        run: |
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name Harvester_ScummVM_Deutsch_Konverter --paths source --paths source/tools/developer --add-data "resources/payload/Regeln.xml;payload" --add-data "resources/payload/VideoManifest.xml;payload" source/tools/developer/scummvm_converter_gui.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $exe='dist/Harvester_ScummVM_Deutsch_Konverter.exe'
+          if (-not (Test-Path $exe -PathType Leaf)) { throw 'STOP: standalone EXE missing' }
+          & "./$exe" --selftest
+          if ($LASTEXITCODE -ne 0) { throw 'STOP: frozen EXE selftest failed' }
+          $listing = python -m PyInstaller.utils.cliutils.archive_viewer -l -r $exe
+          if ($LASTEXITCODE -ne 0) { throw 'STOP: cannot inspect EXE contents' }
+          foreach($s in @('scummvm_converter','harvester_iso')) {
+            if (-not ($listing | Select-String -SimpleMatch $s)) { throw "STOP: missing internal module $s" }
+          }
+          if ($listing | Select-String -Pattern 'private_delta[/\\]|resources[/\\]delta[/\\]|payload[/\\]subtitles|payload[/\\]Daten|Harvester_Deutsch_Patcher[.]exe') {
+            throw 'STOP: private Delta, original game data or other games embedded'
+          }
+          Write-Host 'PASS: one-file converter without Python, Delta or original game files'
+      - name: Create and independently audit final clean 4-file player ZIP
+        shell: pwsh
+        run: |
+          @'
+          from pathlib import Path
+          from hashlib import sha256
+          from zipfile import ZipFile, ZIP_DEFLATED
+          import re
+          exe=Path('dist/Harvester_ScummVM_Deutsch_Konverter.exe')
+          if not exe.is_file() or exe.stat().st_size < 1_000_000:
+              raise SystemExit('STOP: invalid frozen Windows converter')
+          digest=sha256(exe.read_bytes()).hexdigest()
+          name='Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip'
+          readme=Path('release/SCUMMVM_LIES_MICH.txt').read_bytes()
+          cfg=Path('release/SCUMMVM_EINSTELLUNGEN.txt').read_bytes()
+          allowed={
+              'Harvester_ScummVM_Deutsch_Konverter.exe':exe.read_bytes(),
+              'LIES_MICH_SCUMMVM.txt':readme,
+              'SCUMMVM_EINSTELLUNGEN.txt':cfg,
+              'SHA256SUMS.txt':(digest+'  Harvester_ScummVM_Deutsch_Konverter.exe\n').encode('ascii'),
+          }
+          if any(re.search(r'Testversion|Versuchsfassung',v.decode('utf-8'),re.I) for k,v in allowed.items() if k.endswith('.txt')):
+              raise SystemExit('STOP: final documentation contains test label')
+          with ZipFile(name,'w',compression=ZIP_DEFLATED,compresslevel=9) as out:
+              for file,content in allowed.items():
+                  out.writestr(file,content)
+          with ZipFile(name) as actual:
+              if set(actual.namelist())!=set(allowed) or len(actual.namelist())!=4:
+                  raise SystemExit('STOP: unexpected ZIP contents')
+              for f,body in allowed.items():
+                  if actual.read(f)!=body:
+                      raise SystemExit('STOP: ZIP file contents changed: '+f)
+          print('PASS: final ScummVM v1.0.0 ZIP contains exactly 4 player-facing files.')
+          print('Windows EXE SHA-256:',digest)
+          print('Final ZIP SHA-256:',sha256(Path(name).read_bytes()).hexdigest())
+          '@ | python -
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Attach new ScummVM ZIP only when main passes all checks
+        if: ${{ github.ref == 'refs/heads/main' }}
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = 'Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip'
+          $tag = gh release view v1.0.0 --repo $env:GITHUB_REPOSITORY --json tagName --jq '.tagName'
+          if ($LASTEXITCODE -ne 0 -or $tag.Trim() -cne 'v1.0.0') { throw 'STOP: existing v1.0.0 tag missing' }
+          $existing=gh release view v1.0.0 --repo $env:GITHUB_REPOSITORY --json assets --jq '.assets[].name'
+          if ($LASTEXITCODE -ne 0) { throw 'STOP: cannot inspect existing release assets' }
+          foreach ($need in @('Harvester_GOG_Deutsch_v1.0.0.zip','Harvester_GOG_Deutsch_Source_v1.0.0.zip','Harvester_GOG_Deutsch_Resources_v1.0.0.zip')) {
+            if ($existing -notcontains $need) { throw "STOP: existing GOG release asset missing $need" }
+          }
+          if ($existing -contains $asset) {
+            New-Item -ItemType Directory -Path 'scummvm_asset_verify' -ErrorAction Stop | Out-Null
+            gh release download v1.0.0 --repo $env:GITHUB_REPOSITORY --pattern $asset --dir 'scummvm_asset_verify'
+            if ($LASTEXITCODE -ne 0) { throw 'STOP: cannot download existing ScummVM release ZIP' }
+            $prior=(Get-FileHash -Algorithm SHA256 "scummvm_asset_verify/$asset").Hash
+            $local=(Get-FileHash -Algorithm SHA256 $asset).Hash
+            if ($prior -cne $local) { throw 'STOP: existing ScummVM ZIP differs; never overwrite an already released asset automatically' }
+            Write-Host 'PASS: existing ScummVM ZIP already byte-identical'
+          } else {
+            gh release upload v1.0.0 $asset --repo $env:GITHUB_REPOSITORY
+            if ($LASTEXITCODE -ne 0) { throw 'STOP: ScummVM release asset upload failed' }
+          }
+          $after=gh release view v1.0.0 --repo $env:GITHUB_REPOSITORY --json assets --jq '.assets[].name'
+          if ($LASTEXITCODE -ne 0) { throw 'STOP: release verification failed' }
+          foreach ($need in @('Harvester_GOG_Deutsch_v1.0.0.zip','Harvester_GOG_Deutsch_Source_v1.0.0.zip','Harvester_GOG_Deutsch_Resources_v1.0.0.zip',$asset)) {
+            if ($after -notcontains $need) { throw "STOP: release asset missing after upload $need" }
+          }
+          Write-Host 'PASS: separate ScummVM ZIP published, all original assets retained'
+      - name: Add ScummVM section to existing release notes, preserve old content
+        if: ${{ github.ref == 'refs/heads/main' }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          notes="$(gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json body --jq '.body')"
+          if grep -Fq '## ScummVM-Variante (v1.0.0)' <<< "$notes"; then
+            echo 'PASS: ScummVM player notes already present.'
+            exit 0
+          fi
+          out="$(mktemp)"
+          printf '%s\n\n' "$notes" > "$out"
+          cat >> "$out" <<'NOTES'
+          ## ScummVM-Variante (v1.0.0)
+
+          **Zusätzlicher Windows-Download:** [Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip](https://github.com/Koarria/Harvester-German-Translation/releases/download/v1.0.0/Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip)
+
+          Dieser eigenständige Konverter erstellt eine deutsche ScummVM-Datenkopie aus der **originalen englischen GOG-Version** und der **bereits installierten deutschen GOG-Fassung**. Kein Python auf dem Spieler-PC nötig. Unterstützt **ohne Videountertitel, 10 px und 11 px**. **Alle drei Modi, deutsche Texte, Videountertitel und das Laden bereits vorhandener ScummVM-Spielstände wurden durch den Projektinhaber erfolgreich getestet.** DOSBox-Spielstände werden nicht automatisch übernommen.
+
+          Das separate ZIP enthält die Windows-EXE, eine deutsche Anleitung, **[empfohlene ScummVM-Einstellungen](https://github.com/Koarria/Harvester-German-Translation/blob/main/docs/SCUMMVM_EINSTELLUNGEN.md)** (OpenGL, seitenverhältnistreu 4:3, zunächst ungefilterte Grafik für lesbare Untertitel) und eine SHA-256-Datei. [Quellcode](https://github.com/Koarria/Harvester-German-Translation/tree/main/source/tools/developer) ist öffentlich einsehbar.
+
+          **Hinweis:** ScummVM kann das Spiel wegen der englischen Original-EXE als „English“ erkennen; die Mod verwendet trotzdem deutsche Ressourcen. Die bestehende **GOG-/DOSBox-Version 1.0.0 bleibt unverändert**. Die Mod ist inoffiziell und keine offizielle ScummVM-Lokalisierung.
+          NOTES
+          gh release edit v1.0.0 --repo "$GITHUB_REPOSITORY" --notes-file "$out"
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json body --jq '.body' | grep -F '## ScummVM-Variante (v1.0.0)'
+          echo 'PASS: ScummVM documentation added to existing published release'
+# Public CI builds from the pinned GitHub source without original GOG assets.
+# No older GOG/Source/Resource release asset or tag is overwritten.
