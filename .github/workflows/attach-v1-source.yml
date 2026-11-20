@@ -1,11 +1,7 @@
 name: Source of audited Harvester v1.0.0 - attach to existing release
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'source/**'
-      - '.github/workflows/attach-v1-source.yml'
+  # Historic v1.0.0 source asset is frozen. No automatic upload on
+  # subsequent main commits (especially ScummVM v1.0.1 changes).
   workflow_dispatch:
 permissions:
   contents: write
