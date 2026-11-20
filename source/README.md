@@ -19,6 +19,15 @@ Hier liegt der **einsehbare Programmquellcode** des am 19. November 2026 geteste
 | [`tools/developer/test_*.py`](tools/developer/) | Tests für SHA-256, Core, Video, Delta, Bedienung und Paketinhalt |
 | [`tools/developer/build_release_private.ps1`](tools/developer/build_release_private.ps1) | Bauablauf für die Onefile-EXE und Paketprüfung |
 
+### ScummVM-Konverter (zusätzlich)
+
+- [`tools/developer/scummvm_converter.py`](tools/developer/scummvm_converter.py) – ISO-Extraktion nach ScummVM-CD1/CD2/CD3, Integritätskontrolle und Spielstand-Schutz
+- [`tools/developer/scummvm_converter_gui.py`](tools/developer/scummvm_converter_gui.py) – eigenständiger Windows-Konverter mit drei Untertitelmodi
+- [`tools/developer/test_scummvm_converter.py`](tools/developer/test_scummvm_converter.py) – 20 Regressionstests einschließlich der echten GOG-Installationsnachweis-Sonderfälle
+- [`../docs/SCUMMVM_EINSTELLUNGEN.md`](../docs/SCUMMVM_EINSTELLUNGEN.md) – optionale ScummVM-Einstellungen
+
+Diese drei zusätzlichen Python-Dateien stammen aus dem vom Projektinhaber mit allen drei Untertitelmodi erfolgreich getesteten ScummVM-Konverter, wurden für die Veröffentlichung lediglich von verwirrenden Testbezeichnungen bereinigt und werden separat unter Windows neu gebaut. Sie gehören **nicht** zur unveränderten GOG-Setup-EXE.
+
 Die Dateien liegen in der ursprünglichen relativen Projektstruktur unter diesem `source/`-Verzeichnis. Damit lassen sich Implementierung, Hashprüfungen, Übersetzungspipeline und Sicherheitsverhalten untersuchen.
 
 ## Programmcode, Delta und Übersetzungsdaten

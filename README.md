@@ -4,18 +4,30 @@ Inoffizielle, kostenlose deutsche Fanübersetzung für **Harvester (1996)**.
 
 Diese Fanübersetzung bietet deutsche Spieltexte und deutsche Untertitel für die **66 Videosequenzen** des Spiels. Die englische Originalvertonung bleibt erhalten.
 
-## Download
+## Downloads
 
-Die aktuelle Version gibt es unter **[Releases](../../releases)**.
+Im [Release v1.0.0](../../releases/tag/v1.0.0) stehen **zwei getrennte Spielerpakete** zur Verfügung:
 
-**Download:** `Harvester_GOG_Deutsch_v1.0.0.zip` aus dem neuesten Release herunterladen und entpacken.
+| Variante | Download | Verwendung |
+| --- | --- | --- |
+| **GOG / DOSBox** | [`Harvester_GOG_Deutsch_v1.0.0.zip`](../../releases/download/v1.0.0/Harvester_GOG_Deutsch_v1.0.0.zip) | Installiert die deutsche GOG-Fassung mit drei Startmöglichkeiten |
+| **ScummVM** | [`Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip`](../../releases/download/v1.0.0/Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip) | Erstellt aus der **bereits installierten** deutschen GOG-Fassung eine separate ScummVM-Datenkopie |
 
-Das ZIP enthält nur:
-- `Harvester_GOG_Deutsch_Setup.exe` – eigenständiger Windows-Installer
-- `LIES_MICH.txt` – deutsche Installations- und Startanleitung
-- `SHA256SUMS.txt` – SHA-256-Prüfsumme der Setup-EXE
+Beide Programme sind eigenständige Windows-EXEs und benötigen bei Spielern **kein Python**. Der GOG-Installer bleibt unverändert. Quellcode und deutsche Übersetzungsressourcen stehen ebenfalls unter Releases bereit.
 
-Die Installation erfordert **keine separate Python-Installation und kein Delta-ZIP**.
+## Harvester Deutsch unter ScummVM
+
+Für [ScummVM 2026.4.0](https://www.scummvm.org/downloads/) gibt es jetzt einen zusätzlichen **deutschen Konverter**. Die ScummVM-Fassung wurde vom Projektinhaber unter Windows mit **allen drei Modi (ohne Videountertitel, 10 px und 11 px)** erfolgreich getestet. Deutsche Spieltexte, Videountertitel in den entsprechenden Modi und das Laden vorhandener **ScummVM-Spielstände** funktionieren.
+
+1. Zunächst die deutsche GOG-Fassung über `Harvester_GOG_Deutsch_Setup.exe` installieren.
+2. Den zusätzlichen ScummVM-Konverter herunterladen und starten.
+3. Originale englische GOG-Installation, deutsche GOG-Installation und einen **neuen Ausgabe-Oberordner** auswählen.
+4. `ohne`, `10px` oder `11px` wählen und die ScummVM-Datenkopie erstellen.
+5. Im ScummVM-Launcher **Spiel hinzufügen** wählen und den neu erstellten Ordner `Harvester ScummVM Deutsch ...` auswählen.
+
+**Spielstände:** ScummVM-Spielstände blieben beim Nutzertest kompatibel. Eine automatische Übernahme von **DOSBox-Spielständen** ist dagegen nicht vorgesehen. Die Originaldateien werden nicht überschrieben. ScummVM kann wegen der englischen Original-EXE die Sprache als Englisch erkennen, obwohl die Spieltexte deutsch sind.
+
+**[Empfohlene ScummVM-Grafik-, Audio- und Untertitel-Einstellungen](docs/SCUMMVM_EINSTELLUNGEN.md)** sind zusätzlich im Downloadpaket enthalten: OpenGL, seitenverhältnistreues 4:3 und zunächst ausgeschaltete Grafikfilterung für scharfe Untertitel.
 
 ## Quellcode und deutsche Übersetzungsdaten
 

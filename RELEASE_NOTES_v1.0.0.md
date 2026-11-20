@@ -52,3 +52,16 @@ Im Release werden ergänzend zwei ZIP-Dateien bereitgestellt:
 Mit dem [Windows-Bauskript](build/Harvester_aus_Quellcode_bauen.cmd) lässt sich der Installer aus diesen öffentlichen Ressourcen nachbauen. Für den Nachbau wird Python 3.13 benötigt; der SHA-256 einer neu gebauten EXE muss nicht dem ursprünglich getesteten Binary entsprechen.
 
 Das **bereits getestete Installer-ZIP bleibt unverändert**. Weder vollständige GOG-Spielmedien noch originale FST-Filme oder Spielstände sind in den Quellcode-/Ressourcenpaketen enthalten. Das Übersetzungs-Delta enthält urheberrechtlich möglicherweise geschützte Bearbeitungen; eine Freigabe durch Rechteinhaber wird nicht behauptet.
+
+
+## Zusätzliche ScummVM-Variante (v1.0.0)
+
+**Download:** `Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip`
+
+Der eigenständige Windows-Konverter erstellt aus einer **eigenen englischen GOG-Version** und der mit unserem GOG-Installer **bereits installierten deutschen Fassung** eine separate Datenkopie für **ScummVM 2026.4.0**. Es gibt drei auswählbare Modi: **ohne Videountertitel**, **10 px** und **11 px**. Keine Python-Installation erforderlich.
+
+**Bestätigt durch den Projektinhaber:** Alle drei Modi funktionieren unter ScummVM; deutsche Spieltexte werden angezeigt, Videountertitel in den entsprechenden Modi funktionieren, und zuvor angelegte **ScummVM-Spielstände** lassen sich weiterhin laden. **DOSBox-/GOG-Spielstände werden nicht automatisch konvertiert.**
+
+Das ZIP enthält den Konverter, `LIES_MICH_SCUMMVM.txt`, `SCUMMVM_EINSTELLUNGEN.txt` und `SHA256SUMS.txt`. Die [ScummVM-Einstellungsempfehlungen](docs/SCUMMVM_EINSTELLUNGEN.md) erläutern OpenGL, 4:3-Darstellung und scharfe gegenüber geglätteter Videografik. Original-Harvester-GOG-Dateien werden nicht mitgeliefert oder überschrieben.
+
+Der [öffentliche Quellcode des ScummVM-Konverters](source/tools/developer/scummvm_converter.py) ist dem getrennten Quellcodepaket beigefügt. Die bestehenden GOG-/DOSBox-/Source-/Resource-Downloads sowie der Release-Tag `v1.0.0` bleiben unverändert.
