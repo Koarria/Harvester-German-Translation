@@ -6,18 +6,18 @@ Diese Fanübersetzung bietet deutsche Spieltexte und deutsche Untertitel für di
 
 ## Downloads
 
-Es gibt **zwei getrennte Spielerpakete**: die unveränderte **GOG-/DOSBox-Version v1.0.0** und den aktualisierten **ScummVM-Konverter v1.0.1**.
+**Ein gemeinsamer Release für beide Varianten:** Der ursprüngliche **GOG-/DOSBox-Installer v1.0.0** und der aktualisierte **ScummVM-Konverter v1.0.1** stehen auf [derselben Downloadseite](../../releases/tag/v1.0.0).
 
 | Variante | Download | Verwendung |
 | --- | --- | --- |
 | **GOG / DOSBox** | [`Harvester_GOG_Deutsch_v1.0.0.zip`](../../releases/download/v1.0.0/Harvester_GOG_Deutsch_v1.0.0.zip) | Installiert die deutsche GOG-Fassung mit drei Startmöglichkeiten |
-| **ScummVM** | [`Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip`](../../releases/download/v1.0.1/Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip) | Erstellt eine separate ScummVM-Datenkopie; **11 px ist vorausgewählt** |
+| **ScummVM** | [`Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip`](../../releases/download/v1.0.0/Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip) | Erstellt eine separate ScummVM-Datenkopie; **11 px ist vorausgewählt** |
 
 Beide Programme sind eigenständige Windows-EXEs und benötigen bei Spielern **kein Python**. Der GOG-Installer bleibt unverändert. Quellcode und deutsche Übersetzungsressourcen stehen ebenfalls unter Releases bereit.
 
 ## Harvester Deutsch unter ScummVM
 
-**ScummVM v1.0.1:** Verschobene GOG-Installationen mit unveränderten Spieldateien werden akzeptiert; die Integritätsprüfung bleibt bestehen. **11 px** ist die neue Vorauswahl. Der GOG-Installer v1.0.0 ist unverändert.
+**ScummVM v1.0.1:** Verschobene GOG-Installationen mit unveränderten Spieldateien werden akzeptiert; die Integritätsprüfung bleibt bestehen. **11 px** ist die neue Vorauswahl. Der GOG-Installer v1.0.0 ist unverändert. **Beide Downloads findest du unter demselben Release v1.0.0; die jeweiligen Versionsnummern stehen in den Dateinamen.**
 
 Für [ScummVM 2026.4.0](https://www.scummvm.org/downloads/) gibt es jetzt einen zusätzlichen **deutschen Konverter**. Die ScummVM-Fassung wurde vom Projektinhaber unter Windows mit **allen drei Modi (ohne Videountertitel, 10 px und 11 px)** erfolgreich getestet. Deutsche Spieltexte, Videountertitel in den entsprechenden Modi und das Laden vorhandener **ScummVM-Spielstände** funktionieren.
 

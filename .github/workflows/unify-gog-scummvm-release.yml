@@ -1,0 +1,109 @@
+name: Harvester - unification of GOG and ScummVM downloads
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/unify-gog-scummvm-release.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: harvester-v1-release-asset-updates
+  cancel-in-progress: false
+jobs:
+  single-release-page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout updated release description
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify original GOG assets before any release update
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v1.0.0" > "$RUNNER_TEMP/v100_before.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          old=json.loads((Path(os.environ['RUNNER_TEMP'])/'v100_before.json').read_text())
+          allowed={
+              'Harvester_GOG_Deutsch_v1.0.0.zip':'sha256:0135d48708a11635f66d315d7af88bf63ad15f3aba59346e1e0b9acb7c0146f8',
+              'Harvester_GOG_Deutsch_Source_v1.0.0.zip':'sha256:14fb36f59765622bd7d72c9eabd9c93ea2c1d36de1d0f114103f4acf569fda43',
+              'Harvester_GOG_Deutsch_Resources_v1.0.0.zip':'sha256:b74d3b3b028d5075f681c756128f83d0c5aa156a8d25437391104d23681dcc39',
+              'Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip':'sha256:d603e9dbcc0f6b5e7e11d2832a053b6984b1ce539bc19093a6c19bdd0da17dd4'
+          }
+          actual={a['name']:a.get('digest') for a in old['assets']}
+          for name,digest in allowed.items():
+              if actual.get(name)!=digest:
+                  raise SystemExit('STOP: an existing v1.0.0 asset has been altered: '+name)
+          print('PASS: 4 historic GOG/Source/Resources/ScummVM assets unchanged')
+          PY
+      - name: Safely attach already published ScummVM v1.0.1 ZIP to GOG release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          target="Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip"
+          mkdir -p copied
+          if gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fxq "$target"; then
+            echo 'New ScummVM asset already attached; verify existing bytes.'
+            gh release download v1.0.0 --repo "$GITHUB_REPOSITORY" --pattern "$target" --dir copied
+          else
+            echo 'Move verified copy from standalone ScummVM release to joint page.'
+            gh release download v1.0.1 --repo "$GITHUB_REPOSITORY" --pattern "$target" --dir copied
+          fi
+          echo "d94f8c87cd7b13ffcee66ff0c95decf118dde87d1a0ad60611b8b84f3c5901c2  copied/$target" | sha256sum -c -
+          if ! gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fxq "$target"; then
+            gh release upload v1.0.0 "copied/$target" --repo "$GITHUB_REPOSITORY"
+          fi
+          gh release download v1.0.0 --repo "$GITHUB_REPOSITORY" --pattern "$target" --dir "$RUNNER_TEMP"
+          echo "d94f8c87cd7b13ffcee66ff0c95decf118dde87d1a0ad60611b8b84f3c5901c2  $RUNNER_TEMP/$target" | sha256sum -c -
+          echo 'PASS: ScummVM v1.0.1 attached to combined release byte-identically.'
+      - name: Set one clear release title and common instructions
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release edit v1.0.0 --repo "$GITHUB_REPOSITORY" --title "Harvester - Deutsche Fanübersetzung (GOG v1.0.0 + ScummVM v1.0.1)" --notes-file release/RELEASE_NOTES_GEMEINSAM.md
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json body --jq '.body' | grep -F '11 px ist vorausgewählt'
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx 'Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip'
+      - name: Verify old GOG assets are still unchanged
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v1.0.0" > "$RUNNER_TEMP/v100_after.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path(os.environ['RUNNER_TEMP'])
+          before=json.loads((p/'v100_before.json').read_text())
+          after=json.loads((p/'v100_after.json').read_text())
+          old={a['name']:(a['id'],a['size'],a.get('digest')) for a in before['assets']}
+          now={a['name']:(a['id'],a['size'],a.get('digest')) for a in after['assets']}
+          for name,meta in old.items():
+              if now.get(name)!=meta:
+                  raise SystemExit('STOP: original asset unexpectedly replaced: '+name)
+          if after['tag_name']!='v1.0.0' or not any(a['name']=='Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip' for a in after['assets']):
+              raise SystemExit('STOP: joint release incomplete')
+          print('PASS: all historic assets retain original IDs, hashes and sizes.')
+          PY
+      - name: Remove duplicate ScummVM release page only, retain source tag
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view v1.0.1 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release delete v1.0.1 --repo "$GITHUB_REPOSITORY" --yes
+          fi
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json name,assets --jq '.name, (.assets[].name)'
+          echo 'PASS: one shared public release page, tagged GOG version preserved; ScummVM v1.0.1 source tag remains.'
