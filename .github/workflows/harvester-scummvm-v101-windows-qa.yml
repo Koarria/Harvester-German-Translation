@@ -1,0 +1,140 @@
+name: Harvester ScummVM Deutsch v1.0.1 - Windows build and QA
+on:
+  push:
+    branches:
+      - 'fix/scummvm-relocated-gog-paths'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: harvester-scummvm-hotfix-v101-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  windows-scummvm-hotfix:
+    runs-on: windows-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout public sources
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Python 3.13 (Windows build runner)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify original public translation XML hashes
+        shell: pwsh
+        run: |
+          $expect = @{
+            'resources/payload/Regeln.xml' = '7c72b55366546080544d603fbe4f24aa128d80c043a56cad36db4db40327266b'
+            'resources/payload/VideoManifest.xml' = 'f56a5708018820bcbc6af0c6fb71f3f775a39b317bd1626eb898aa04aaf7162d'
+          }
+          foreach ($item in $expect.GetEnumerator()) {
+            $got=(Get-FileHash -Algorithm SHA256 -LiteralPath $item.Key).Hash.ToLowerInvariant()
+            if ($got -cne $item.Value) { throw "STOP: altered original translation XML $($item.Key)" }
+          }
+          Write-Host 'PASS: Exact original tested translation XML inputs.'
+      - name: Audit release labels, source syntax and required safety checks
+        shell: pwsh
+        run: |
+          @'
+          from pathlib import Path
+          import ast,re
+          src=Path('source/tools/developer')
+          gui=(src/'scummvm_converter_gui.py').read_text('utf-8')
+          core=(src/'scummvm_converter.py').read_text('utf-8')
+          for file in ('scummvm_converter.py','scummvm_converter_gui.py','test_scummvm_converter.py'):
+              ast.parse((src/file).read_text('utf-8'), filename=file)
+          forbidden=(r'Testversion',r'Versuchsfassung',r'Experimenteller Konverter',r'INGAME-TEST NOCH OFFEN',r'SCUMMVM_DEUTSCH_TEST_HINWEISE')
+          if any(re.search(p,core+'\n'+gui,re.I) for p in forbidden):
+              raise SystemExit('STOP: unwanted testing labels in public converter/GUI')
+          for required in ('verified_local_render_hashes','ALTER_FIX2_STARTER.txt','LOKALE_RENDER_QA.json','VIDEO_MANIFEST_SHA256','ISO_FILE_COUNTS'):
+              if required not in core: raise SystemExit('STOP: safety preflight missing: '+required)
+          if 'SCUMMVM_DEUTSCH_HINWEISE.txt' not in core:
+              raise SystemExit('STOP: final generated player instructions missing')
+          for name in ('release/SCUMMVM_LIES_MICH_v1.0.1.txt','release/SCUMMVM_EINSTELLUNGEN.txt'):
+              content=Path(name).read_text('utf-8')
+              if re.search(r'Testversion|Versuchsfassung|\bTEST\b',content,re.I):
+                  raise SystemExit('STOP: testing wording in public release document '+name)
+          print('PASS: safe release labels, public source syntax and pinned security logic')
+          '@ | python -
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Run all converter regression tests (including relocated installs)
+        shell: pwsh
+        env:
+          PYTHONPATH: ${{ github.workspace }}\source
+        run: |
+          python -m unittest discover -s source/tools/developer -p test_scummvm_converter.py -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Write-Host 'PASS: fail-closed ISO, double XML starter, video SHA, save safety tests'
+      - name: Install pinned public Python build dependencies
+        shell: pwsh
+        run: |
+          python -m pip install -r source/requirements-build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build standalone Windows German ScummVM converter
+        shell: pwsh
+        run: |
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --name Harvester_ScummVM_Deutsch_Konverter --paths source --paths source/tools/developer --add-data "resources/payload/Regeln.xml;payload" --add-data "resources/payload/VideoManifest.xml;payload" source/tools/developer/scummvm_converter_gui.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $exe='dist/Harvester_ScummVM_Deutsch_Konverter.exe'
+          if (-not (Test-Path $exe -PathType Leaf)) { throw 'STOP: standalone EXE missing' }
+          & "./$exe" --selftest
+          if ($LASTEXITCODE -ne 0) { throw 'STOP: frozen EXE selftest failed' }
+          $listing = python -m PyInstaller.utils.cliutils.archive_viewer -l -r $exe
+          if ($LASTEXITCODE -ne 0) { throw 'STOP: cannot inspect EXE contents' }
+          foreach($s in @('scummvm_converter','harvester_iso')) {
+            if (-not ($listing | Select-String -SimpleMatch $s)) { throw "STOP: missing internal module $s" }
+          }
+          if ($listing | Select-String -Pattern 'private_delta[/\\]|resources[/\\]delta[/\\]|payload[/\\]subtitles|payload[/\\]Daten|Harvester_Deutsch_Patcher[.]exe') {
+            throw 'STOP: private Delta, original game data or other games embedded'
+          }
+          Write-Host 'PASS: one-file converter without Python, Delta or original game files'
+      - name: Create and independently audit final clean 4-file player ZIP
+        shell: pwsh
+        run: |
+          @'
+          from pathlib import Path
+          from hashlib import sha256
+          from zipfile import ZipFile, ZIP_DEFLATED
+          import re
+          exe=Path('dist/Harvester_ScummVM_Deutsch_Konverter.exe')
+          if not exe.is_file() or exe.stat().st_size < 1_000_000:
+              raise SystemExit('STOP: invalid frozen Windows converter')
+          digest=sha256(exe.read_bytes()).hexdigest()
+          name='Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip'
+          readme=Path('release/SCUMMVM_LIES_MICH_v1.0.1.txt').read_bytes()
+          cfg=Path('release/SCUMMVM_EINSTELLUNGEN.txt').read_bytes()
+          allowed={
+              'Harvester_ScummVM_Deutsch_Konverter.exe':exe.read_bytes(),
+              'LIES_MICH_SCUMMVM.txt':readme,
+              'SCUMMVM_EINSTELLUNGEN.txt':cfg,
+              'SHA256SUMS.txt':(digest+'  Harvester_ScummVM_Deutsch_Konverter.exe\n').encode('ascii'),
+          }
+          if any(re.search(r'Testversion|Versuchsfassung',v.decode('utf-8'),re.I) for k,v in allowed.items() if k.endswith('.txt')):
+              raise SystemExit('STOP: final documentation contains test label')
+          with ZipFile(name,'w',compression=ZIP_DEFLATED,compresslevel=9) as out:
+              for file,content in allowed.items():
+                  out.writestr(file,content)
+          with ZipFile(name) as actual:
+              if set(actual.namelist())!=set(allowed) or len(actual.namelist())!=4:
+                  raise SystemExit('STOP: unexpected ZIP contents')
+              for f,body in allowed.items():
+                  if actual.read(f)!=body:
+                      raise SystemExit('STOP: ZIP file contents changed: '+f)
+          print('PASS: final ScummVM v1.0.1 ZIP contains exactly 4 player-facing files.')
+          print('Windows EXE SHA-256:',digest)
+          print('Final ZIP SHA-256:',sha256(Path(name).read_bytes()).hexdigest())
+          '@ | python -
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Upload Windows ZIP for real-game confirmation
+        uses: actions/upload-artifact@v4
+        with:
+          name: Harvester-ScummVM-Deutsch-v1.0.1-Windows
+          path: Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
