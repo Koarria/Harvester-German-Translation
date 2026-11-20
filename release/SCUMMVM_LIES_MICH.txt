@@ -49,7 +49,7 @@ für scharfe 11px-Untertitel die Grafikfilterung zunächst ausschalten.
 Die ScummVM-Untertiteloption ändert die eingebrannten Videountertitel
 nicht. Für eine andere Schriftgröße eine neue Datenkopie erzeugen.
 
-TESTUMFANG DER VERÖFFENTLICHUNG
+BESTÄTIGTER FUNKTIONSUMFANG
 Unter Windows mit ScummVM wurden „ohne“, 10px und 11px erfolgreich
 mit deutschen Texten getestet. Deutsche Videountertitel wurden in
 den beiden Untertitelmodi bestätigt. Das Laden bestehender ScummVM-
