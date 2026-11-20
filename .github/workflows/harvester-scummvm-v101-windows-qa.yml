@@ -3,6 +3,15 @@ on:
   push:
     branches:
       - 'fix/scummvm-relocated-gog-paths'
+      - main
+    paths:
+      - 'source/tools/developer/scummvm_converter.py'
+      - 'source/tools/developer/scummvm_converter_gui.py'
+      - 'source/tools/developer/test_scummvm_converter.py'
+      - 'source/runtime/harvester_iso.py'
+      - 'release/SCUMMVM_LIES_MICH_v1.0.1.txt'
+      - 'release/SCUMMVM_RELEASE_NOTES_v1.0.1.md'
+      - '.github/workflows/harvester-scummvm-v101-windows-qa.yml'
   pull_request:
     branches:
       - main
@@ -138,3 +147,63 @@ jobs:
           if-no-files-found: error
           compression-level: 0
           retention-days: 30
+  publish-scummvm-v101:
+    name: Publish standalone ScummVM v1.0.1 release
+    needs: windows-scummvm-hotfix
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout exact tested revision and public release notes
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download the QA-approved Windows player package
+        uses: actions/download-artifact@v4
+        with:
+          name: Harvester-ScummVM-Deutsch-v1.0.1-Windows
+          path: packaged
+      - name: Independently audit executable, checksum, and package entries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from zipfile import ZipFile
+          file=Path("packaged/Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip")
+          if not file.is_file(): raise SystemExit("STOP: Tested Windows ZIP not found")
+          expected={'Harvester_ScummVM_Deutsch_Konverter.exe','LIES_MICH_SCUMMVM.txt','SCUMMVM_EINSTELLUNGEN.txt','SHA256SUMS.txt'}
+          with ZipFile(file) as z:
+              if set(z.namelist()) != expected or len(z.namelist()) != len(expected):
+                  raise SystemExit("STOP: unexpected package entries")
+              data=z.read('Harvester_ScummVM_Deutsch_Konverter.exe')
+              declared=z.read('SHA256SUMS.txt').decode('ascii').strip()
+              expected_line=sha256(data).hexdigest()+'  Harvester_ScummVM_Deutsch_Konverter.exe'
+              if declared!=expected_line: raise SystemExit("STOP: executable checksum mismatch")
+              if len(data)<1_000_000: raise SystemExit("STOP: invalid Windows executable")
+          print("PASS: Windows player ZIP",sha256(file.read_bytes()).hexdigest())
+          print("PASS: executable SHA256",sha256(data).hexdigest())
+          PY
+      - name: Create ScummVM-only release without modifying v1.0.0
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          asset="packaged/Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip"
+          for old in Harvester_GOG_Deutsch_v1.0.0.zip Harvester_GOG_Deutsch_Source_v1.0.0.zip Harvester_GOG_Deutsch_Resources_v1.0.0.zip Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip; do
+            gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx "$old"
+          done
+          if gh release view v1.0.1 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            mkdir -p prior_v101
+            gh release download v1.0.1 --repo "$GITHUB_REPOSITORY" --pattern 'Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip' --dir prior_v101
+            cmp -s "$asset" prior_v101/Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip || { echo "STOP: existing v1.0.1 asset differs; never clobber"; exit 1; }
+            echo 'PASS: previously published v1.0.1 has identical bytes'
+          else
+            gh release create v1.0.1 "$asset" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Harvester – Deutsche Fanübersetzung für ScummVM v1.0.1" --notes-file release/SCUMMVM_RELEASE_NOTES_v1.0.1.md
+          fi
+          gh release view v1.0.1 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx 'Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip'
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx 'Harvester_GOG_Deutsch_v1.0.0.zip'
+          echo 'PASS: standalone ScummVM v1.0.1 published, GOG v1.0.0 remains'
