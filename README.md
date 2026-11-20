@@ -33,7 +33,7 @@ Für [ScummVM 2026.4.0](https://www.scummvm.org/downloads/) gibt es jetzt einen 
 
 ## Quellcode und deutsche Übersetzungsdaten
 
-**Der aktuelle Projektstand für die technische Prüfung beider Installer ist [Git-Tag v1.0.1](https://github.com/Koarria/Harvester-German-Translation/tree/v1.0.1)** mit 47 Quelldateien, Übersetzungsressourcen und Windows-Bauskripten. [Komplettes Archiv herunterladen](https://github.com/Koarria/Harvester-German-Translation/archive/refs/tags/v1.0.1.zip).
+**Der aktuelle Projektstand für die technische Prüfung beider Installer ist [Git-Tag v1.0.1](https://github.com/Koarria/Harvester-German-Translation/tree/v1.0.1)** mit 47 Dateien unter `source/`, Übersetzungsressourcen und Windows-Bauskripten. [Komplettes Archiv herunterladen](https://github.com/Koarria/Harvester-German-Translation/archive/refs/tags/v1.0.1.zip).
 
 - [Programmquellcode](source/README.md) – Python-Installer, FST-Renderer, C#-Patcher, Hashprüfungen und Tests
 - [Übersetzungsressourcen](resources/README.md) – das geprüfte Delta-Bundle, 128 deutsche SRT-Dateien, zwei XML-Manifeste und der eigene C#-Patcher
