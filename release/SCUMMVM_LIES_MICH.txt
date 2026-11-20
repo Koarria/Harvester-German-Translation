@@ -1,0 +1,67 @@
+HARVESTER – DEUTSCHE FANÜBERSETZUNG FÜR SCUMMVM
+Version 1.0.0 · Windows · kostenlos und inoffiziell
+
+Dieses Paket enthält:
+  Harvester_ScummVM_Deutsch_Konverter.exe
+  LIES_MICH_SCUMMVM.txt
+  SCUMMVM_EINSTELLUNGEN.txt
+  SHA256SUMS.txt
+
+VORAUSSETZUNGEN
+1. Eine eigene unterstützte englische GOG-Version von Harvester.
+2. Die bereits separat installierte deutsche GOG-Fassung:
+   https://github.com/Koarria/Harvester-German-Translation/releases/tag/v1.0.0
+3. ScummVM 2026.4.0 (Windows):
+   https://www.scummvm.org/downloads/
+4. Ausreichend freier Speicherplatz für eine NEUE ScummVM-Datenkopie.
+
+INSTALLATION
+1. EXE starten. Eine separate Python-Installation ist nicht nötig.
+2. „Unveränderte englische GOG-Installation“ auswählen.
+3. „Harvester GOG Deutsch“ als bereits installierte DE-Fassung auswählen.
+4. Einen NEUEN, leeren AUSGABE-OBERORDNER außerhalb der beiden
+   Installationen auswählen.
+5. „Videountertitel“ wählen:
+   11px = bessere Lesbarkeit (Empfehlung)
+   10px = kleinere deutsche Videountertitel
+   ohne = ohne Videountertitel, aber deutsche Spieltexte
+6. Auf „ScummVM-Kopie erstellen“ klicken. Das Programm prüft vor
+   dem Kopieren Originaldateien, deutsche Ressourcen, SHA-256 und
+   die Untertitel-Rendernachweise. Es überschreibt keine GOG-Dateien.
+7. Der fertige Ordner heißt z. B. „Harvester ScummVM Deutsch 11px“.
+8. In ScummVM „Spiel hinzufügen“ und GENAU diesen neu erzeugten
+   Ordner auswählen (nicht CD1, nicht den GOG-Installationsordner).
+9. Das Spiel kann bei der automatischen ScummVM-Erkennung als
+   „English“ angezeigt werden: Die englische Original-HARVEST.EXE
+   wird nur zur Erkennung genutzt. Die übersetzten Ressourcen
+   sind trotzdem deutsch.
+
+SPIELSTÄNDE
+Vorhandene ScummVM-Spielstände konnten mit dieser deutschen Fassung
+geladen werden. Die DOSBox-/GOG-Spielstände werden NICHT importiert;
+ScummVM besitzt ein eigenes Spielstandformat.
+Englische Originalvertonung bleibt erhalten.
+
+EMPFOHLENE SCUMMVM-EINSTELLUNGEN
+Siehe SCUMMVM_EINSTELLUNGEN.txt im selben Ordner.
+Kurzfassung: pro Spiel OpenGL, Seitenverhältnis 4:3 beibehalten,
+für scharfe 11px-Untertitel die Grafikfilterung zunächst ausschalten.
+Die ScummVM-Untertiteloption ändert die eingebrannten Videountertitel
+nicht. Für eine andere Schriftgröße eine neue Datenkopie erzeugen.
+
+TESTUMFANG DER VERÖFFENTLICHUNG
+Unter Windows mit ScummVM wurden „ohne“, 10px und 11px erfolgreich
+mit deutschen Texten getestet. Deutsche Videountertitel wurden in
+den beiden Untertitelmodi bestätigt. Das Laden bestehender ScummVM-
+Spielstände wurde ebenfalls vom Projektinhaber bestätigt.
+Nicht behauptet wird ein erneuter vollständiger Durchlauf aller
+66 Videosequenzen und aller drei Spielabschnitte.
+
+SICHERHEIT UND RECHTE
+Das Originalspiel, die englische GOG-Installation, die bereits
+vorhandene deutsche GOG-Installation und die Spielstände werden
+nicht überschrieben. Der Konverter enthält keine Originalspiel-CDs
+oder Videos und ist nicht Teil von ScummVM.
+Dies ist eine inoffizielle, nichtkommerzielle Fanübersetzung.
+Die Rechte an Harvester liegen bei ihren jeweiligen Rechteinhabern.
+Der Besitz einer eigenen unterstützten GOG-Version ist erforderlich.
