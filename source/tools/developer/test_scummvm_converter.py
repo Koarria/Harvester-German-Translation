@@ -157,6 +157,11 @@ class ScummvmConverterTests(unittest.TestCase):
             with self.assertRaisesRegex(converter.ConversionError,"dürfen nicht ineinander liegen"):
                 converter.convert(self.english,self.german,inside,"ohne",True)
 
+    def test_gui_defaults_to_recommended_11px(self):
+        gui = (Path(__file__).resolve().parent / "scummvm_converter_gui.py").read_text(encoding="utf-8")
+        self.assertIn('self.mode = tk.StringVar(value="11px")', gui)
+        self.assertNotIn('self.mode = tk.StringVar(value="10px")', gui)
+
     def test_correct_iso_choice_per_mode(self):
         name="HARVEST.DAT"
         self.assertEqual(converter.game_iso_path(self.german,"ohne",name),self.german/name)
