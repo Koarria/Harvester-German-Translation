@@ -13,7 +13,7 @@ Diese Fanübersetzung bietet deutsche Spieltexte und deutsche Untertitel für di
 | **GOG / DOSBox** | [`Harvester_GOG_Deutsch_v1.0.0.zip`](../../releases/download/v1.0.0/Harvester_GOG_Deutsch_v1.0.0.zip) | Installiert die deutsche GOG-Fassung mit drei Startmöglichkeiten |
 | **ScummVM** | [`Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip`](../../releases/download/v1.0.0/Harvester_ScummVM_Deutsch_Konverter_v1.0.1.zip) | Erstellt eine separate ScummVM-Datenkopie; **11 px ist vorausgewählt** |
 
-Beide Programme sind eigenständige Windows-EXEs und benötigen bei Spielern **kein Python**. Der GOG-Installer bleibt unverändert. Quellcode und deutsche Übersetzungsressourcen stehen ebenfalls unter Releases bereit.
+Beide Programme sind eigenständige Windows-EXEs und benötigen bei Spielern **kein Python**. Der GOG-Installer bleibt unverändert. Die gemeinsamen Release-Assets enthalten außerdem die Übersetzungsressourcen und ein historisches GOG-Quellcodearchiv; **den vollständigen aktuellen Quellstand für beide Programme** gibt es separat als [Projektarchiv v1.0.1](https://github.com/Koarria/Harvester-German-Translation/archive/refs/tags/v1.0.1.zip).
 
 ## Harvester Deutsch unter ScummVM
 
@@ -33,13 +33,14 @@ Für [ScummVM 2026.4.0](https://www.scummvm.org/downloads/) gibt es jetzt einen 
 
 ## Quellcode und deutsche Übersetzungsdaten
 
-**Der komplette Installer-Quellcode und die deutschen Übersetzungsressourcen sind öffentlich einsehbar:**
+**Der aktuelle Projektstand für die technische Prüfung beider Installer ist [Git-Tag v1.0.1](https://github.com/Koarria/Harvester-German-Translation/tree/v1.0.1)** mit 47 Dateien unter `source/`, Übersetzungsressourcen und Windows-Bauskripten. [Komplettes Archiv herunterladen](https://github.com/Koarria/Harvester-German-Translation/archive/refs/tags/v1.0.1.zip).
 
 - [Programmquellcode](source/README.md) – Python-Installer, FST-Renderer, C#-Patcher, Hashprüfungen und Tests
 - [Übersetzungsressourcen](resources/README.md) – das geprüfte Delta-Bundle, 128 deutsche SRT-Dateien, zwei XML-Manifeste und der eigene C#-Patcher
-- [Installer aus Quellcode bauen](build/Harvester_aus_Quellcode_bauen.cmd) – Windows-Bauskript zur Zusammenführung der öffentlichen Dateien
+- [Installer aus Quellcode bauen](build/Harvester_aus_Quellcode_bauen.cmd) – Windows-Bauskript für den GOG-Installer
+- [Technische Quellcodeprüfung für Nexus Mods](docs/QUELLCODE_PRUEFUNG_NEXUS.md) – Zuordnung der veröffentlichten EXEs, Hashes, Windows-CI-Builds und bekannte Grenzen
 
-Auf der [Release-Seite](../../releases/tag/v1.0.0) stehen das **getestete Spielerpaket** sowie separate ZIP-Archive für Quellcode und Übersetzungsressourcen. Zum Spielen braucht man **nur das normale Installer-ZIP** und die eigene englische GOG-Version, weder Python noch weitere Delta-Dateien.
+Auf der [gemeinsamen Release-Seite](../../releases/tag/v1.0.0) stehen **beide getesteten Spieler-Installer**, das GOG-v1.0.0-Source-ZIP und die Übersetzungsressourcen. Das zusätzliche `Harvester_GOG_Deutsch_Source_v1.0.0.zip` dokumentiert jedoch **einen älteren Stand** und enthält nicht die aktuellen ScummVM-v1.0.1-Korrekturen. Auch GitHubs automatisch zum Release `v1.0.0` angebotene `Source code`-Archive sind nicht der vollständige Quellcode; für externe Prüfungen bitte das oben verlinkte **v1.0.1-Projektarchiv** verwenden. Zum Spielen braucht man lediglich den passenden Installer und die eigene englische GOG-Version – weder Python noch separate Delta-Dateien.
 
 Die ursprünglich getestete **GOG-v1.0.0-EXE** wurde nicht verändert. Ein neuer Build aus Quellen benötigt Python 3.13 und kann technisch einen anderen EXE-SHA-256 erzeugen. Die deutschen Delta-Ressourcen enthalten Bearbeitungen des Originalspiels; ihre Veröffentlichung ist keine automatische urheberrechtliche Freigabe.
 
