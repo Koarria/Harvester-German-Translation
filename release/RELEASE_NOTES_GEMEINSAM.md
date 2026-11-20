@@ -34,11 +34,11 @@ Die ScummVM-Konvertierung nutzt die bestehenden Spielressourcen, verändert die 
 
 Empfohlene ScummVM-Einstellungen: **OpenGL**, unverzerrtes **4:3**, Grafikfilterung zunächst **aus**. [Ausführliche Einstellungen](https://github.com/Koarria/Harvester-German-Translation/blob/main/docs/SCUMMVM_EINSTELLUNGEN.md).
 
-## Weitere Dateien, Quellcode und ältere Fassung
+## Weitere Dateien und Quellcode
 
 Die ergänzenden Dateien `Harvester_GOG_Deutsch_Source_v1.0.0.zip` und `Harvester_GOG_Deutsch_Resources_v1.0.0.zip` richten sich an technisch Interessierte; normale Spieler benötigen sie nicht.
 
-Der frei einsehbare [Quellcode auf GitHub](https://github.com/Koarria/Harvester-German-Translation/tree/main/source) enthält auch die **ScummVM-Konverter-Korrekturen und Regressionstests**. Das gesonderte Source-ZIP v1.0.0 dokumentiert den ursprünglichen GOG-Release-Stand. Der ursprüngliche ScummVM-Konverter v1.0.0 kann als ältere Datei im Archiv verbleiben, ist aber **nicht der empfohlene Download**.
+Der frei einsehbare [Quellcode auf GitHub](https://github.com/Koarria/Harvester-German-Translation/tree/main/source) enthält auch die **ScummVM-Konverter-Korrekturen und Regressionstests**. Das gesonderte Source-ZIP v1.0.0 dokumentiert den ursprünglichen GOG-Release-Stand. Im gemeinsamen Release steht ausschließlich der aktuelle **ScummVM-Konverter v1.0.1** zum Download bereit.
 
 ## Rechtlicher Hinweis
 

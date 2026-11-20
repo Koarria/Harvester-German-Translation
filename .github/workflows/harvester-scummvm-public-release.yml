@@ -1,4 +1,4 @@
-name: Harvester ScummVM Deutsch v1.0.0 - Windows release build
+name: Historical ScummVM v1.0.0 branch build (no public release)
 on:
   push:
     branches:
@@ -14,7 +14,6 @@ on:
       - 'release/SCUMMVM_LIES_MICH.txt'
       - 'release/SCUMMVM_EINSTELLUNGEN.txt'
       - '.github/workflows/harvester-scummvm-public-release.yml'
-  workflow_dispatch:
 permissions:
   contents: write
 concurrency:
