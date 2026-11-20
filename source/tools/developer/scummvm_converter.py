@@ -12,7 +12,6 @@ import argparse
 from dataclasses import dataclass
 import hashlib
 import json
-import os
 import re
 from pathlib import Path
 import shutil
@@ -149,9 +148,10 @@ def verified_local_render_hashes(english: Path, german: Path, mode: str,
     describe historical pre-rendered patches, NOT RC3b local-renderer output.
 
     Neither the proof nor QA report is assumed globally hash-pinned: the proof
-    must bind to exactly the two user-selected GOG folders, attest every
-    selected VIDEO ISO and the QA JSON, and the QA must attest all 132 jobs.
-    This verifies internal consistency with the installed, tested GOG release.
+    must attest every selected VIDEO ISO and the QA JSON, and the QA must
+    attest all 132 jobs. Folder names recorded when GOG Deutsch was installed
+    are historical metadata: moved or copied installations are acceptable
+    only when all current content checks still pass.
     """
     proof_path = german / "Deutsch_Pruefnachweis.xml"
     require(proof_path.is_file() and not proof_path.is_symlink()
@@ -163,12 +163,13 @@ def verified_local_render_hashes(english: Path, german: Path, mode: str,
                 "7c72b55366546080544d603fbe4f24aa128d80c043a56cad36db4db40327266b"
             and proof.get("video_untertitel_release") == "HARVESTER_GOG_DEUTSCH_VIDEO_V1",
             "Deutsche Videoinstallation besitzt keinen gültigen v1.0.0-Prüfnachweis")
-    require(proof.get("original") and proof.get("ziel")
-            and os.path.normcase(str(Path(proof.get("original")).resolve())) ==
-                os.path.normcase(str(english.resolve()))
-            and os.path.normcase(str(Path(proof.get("ziel")).resolve())) ==
-                os.path.normcase(str(german.resolve())),
-            "Installationsnachweis gehört zu anderen GOG-Quell-/Zielordnern")
+    # A legitimate GOG folder can be moved after installation. Old absolute
+    # paths in the XML are not integrity checks; retaining their presence
+    # validates the proof format, while the checks below hash the CURRENT
+    # German ISO files and renderer QA against the v1.0.0 proof and manifest.
+    # The English HARVEST.EXE is verified independently in preflight().
+    require(proof.get("original") and proof.get("ziel"),
+            "Installationsnachweis enthält keine GOG-Quell-/Zielangaben")
 
     registered: dict[str, str] = {}
     # Production installer.py:update_proof() deliberately moves the original
