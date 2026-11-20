@@ -1,0 +1,33 @@
+name: Harvester v1 release title - GOG and ScummVM
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/harvester-v1-release-title.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: harvester-v1-release-asset-updates
+  cancel-in-progress: false
+jobs:
+  title-only:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm all four player/source/resource ZIP assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for f in Harvester_GOG_Deutsch_v1.0.0.zip Harvester_GOG_Deutsch_Source_v1.0.0.zip Harvester_GOG_Deutsch_Resources_v1.0.0.zip Harvester_ScummVM_Deutsch_Konverter_v1.0.0.zip; do
+            gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fx "$f"
+          done
+      - name: Update display title only, never touch tag or binaries
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release edit v1.0.0 --repo "$GITHUB_REPOSITORY" --title "Harvester – Deutsche Fanübersetzung (GOG und ScummVM) v1.0.0"
+          gh release view v1.0.0 --repo "$GITHUB_REPOSITORY" --json name --jq '.name' | grep -Fx "Harvester – Deutsche Fanübersetzung (GOG und ScummVM) v1.0.0"
+          echo 'PASS: Only the published display title changed; tag and assets retained.'
