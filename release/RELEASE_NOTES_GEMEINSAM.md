@@ -19,6 +19,14 @@ Beide Downloads enthalten eine eigenständige Windows-EXE. Auf dem Spieler-PC is
 
 Die originale englische GOG-Version wird nicht überschrieben. Vorhandene GOG/DOSBox-Spielstände konnten in der deutschen Fassung geladen werden.
 
+### DOSBox-Grafik in der deutschen GOG-Kopie ändern
+
+Die drei deutschen CMD-Starter verwenden **eigene DOSBox-Konfigurationen im Ordner `Harvester GOG Deutsch`**. Spätere Änderungen am DOSBox Configurator der ursprünglichen englischen Installation werden **nicht automatisch übernommen**.
+
+Für Vollbild, Grafikmodus, Seitenverhältnis, Skalierung usw. das Spiel beenden, **`Harvester GOG Deutsch/dosbox_harvester.conf` sichern** und dann mit einem Texteditor anpassen. **`dosbox_harvester_single_*.conf`** und die drei CMD-Starter möglichst nicht verändern: Sie wählen die zugehörigen Videountertitel-CD-Abbilder. Die Mod muss für Grafikänderungen nicht neu installiert werden.
+
+**[Ausführliche DOSBox-Einstellungsanleitung](https://github.com/Koarria/Harvester-German-Translation/blob/main/docs/DOSBOX_EINSTELLUNGEN.md)**
+
 ## ScummVM vorbereiten
 
 **Zuerst die deutsche GOG-Fassung installieren.** Danach:

@@ -73,6 +73,14 @@ Im neu erstellten Ordner `Harvester GOG Deutsch` stehen drei Startdateien bereit
 
 Die englische Sprachausgabe bleibt erhalten. Die Videountertitel geben gesprochene Dialoge wieder. Einige Beschriftungen und Grafiken bleiben englisch.
 
+### DOSBox-Grafikeinstellungen (GOG-Version)
+
+Die deutsche Version liegt in einem eigenen Spielordner und verwendet **eigene DOSBox-Konfigurationsdateien**. Die drei deutschen CMD-Starter laden die gemeinsame `dosbox_harvester.conf` aus **`Harvester GOG Deutsch`** und zusätzlich je eine Konfiguration für den Untertitelmodus. **Änderungen am DOSBox Configurator der ursprünglichen englischen GOG-Installation wirken sich später nicht automatisch auf die deutsche Kopie aus.**
+
+Für Vollbild, Grafikmodus, Seitenverhältnis, Skalierung oder Mausgeschwindigkeit bei beendetem Spiel **die Datei `Harvester GOG Deutsch/dosbox_harvester.conf` sichern und anschließend mit einem Texteditor anpassen**. Die drei `dosbox_harvester_single_*.conf`-Dateien und CMD-Starter für reine Grafikänderungen unverändert lassen. Eine Neuinstallation ist nicht nötig.
+
+**[Schritt-für-Schritt-Anleitung zu den DOSBox-Einstellungen](docs/DOSBOX_EINSTELLUNGEN.md)**
+
 ## Getesteter Umfang
 
 Der Installer wurde mit einer englischen GOG-Installation unter Windows getestet. Bestätigt wurden die erfolgreiche Erstellung der deutschen Spielkopie, deutsche Spieltexte, das Laden bestehender Spielstände und die Anzeige deutscher Videountertitel.
